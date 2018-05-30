@@ -57,6 +57,10 @@ public class Banco implements Serializable{
         clientes.remove(i);
     }
     
+    public void eliminarInversor(int i){
+        clientes.remove(i);
+    }
+    
     public ClientePremium getCliente(int i){
         return clientes.get(i); 
     }

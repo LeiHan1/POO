@@ -24,7 +24,7 @@ public class BolsaDeValores implements Serializable{
     
     private String nombreBolsa;
     private ArrayList<Empresa> listaEmpresas;
-    boolean existeEmpresa = false;
+    private boolean existeEmpresa = false;
     //private ArrayList<Banco> listaBancos;
     
     public BolsaDeValores(String nombre){
@@ -32,6 +32,10 @@ public class BolsaDeValores implements Serializable{
         this.nombreBolsa = nombre;
         listaEmpresas = new ArrayList<>();
         //listaBancos = new ArrayList<>();
+    }
+    
+    public boolean existeEmpresa(){
+        return this.existeEmpresa;
     }
 
     public String getNombreBolsa() {
@@ -42,7 +46,7 @@ public class BolsaDeValores implements Serializable{
         listaEmpresas.add(i);
     }
     
-    public void borrarEmpresa(Empresa i){
+    public void borrarEmpresa(int i){
         
         listaEmpresas.remove(i);
     }
@@ -148,17 +152,7 @@ public class BolsaDeValores implements Serializable{
         }
     }
 */
-    
-    public void opAnadirEmpresa(){ //9.anadir empresa a la bolsa
-        Escaner es = new Escaner();
-        String nombreEmpresa = es.pedirNomEmpresa();
-        double actual = es.pedirValorActual();
-        Empresa e = new Empresa(nombreEmpresa,actual);
-        entrarBolsa(e);
-        System.out.println ("Empresa añadida");
-        
-    }
-    
+   
     public int buscarEmpresa(String nombreEmpresa){
         int indice = 0;
             for (int i = 0; i < this.getListaEmpresas().size(); i++){
@@ -173,35 +167,7 @@ public class BolsaDeValores implements Serializable{
         //} // end if else
         return indice;
     }
-    
-    
-    public void opEliminarEmpresa(){ //10.eliminar empresa a la bolsa
-        Escaner es = new Escaner();
-        String nombreE = es.pedirNomEmpresa();
-        int i = buscarEmpresa(nombreE);
-            if (this.existeEmpresa == true){
-                this.getListaEmpresas().remove(i);
-                System.out.println("Empresa eliminada.");
-            } else {
-                System.out.println("No existe esta empresa.");
-            }
-        
-        /*
-        for (Empresa listaEmpresa : listaEmpresas) {
-            
-            //buscar elemento por nombre
-                if (listaEmpresa.getNombre().equals(nombreE)){
-                    borraEmpresa(listaEmpresa);
-                    System.out.println ("Empresa eliminada");
-                    break;
-                } else {
-                    System.out.println ("La empresa "+ nombreE + " no existe");
-                }
-        }
-*/
-        
-            
-    }
+
     
     public void opActualizacionDeValores(){ //11.actualizacion de valores de acciones
         System.out.println ("Actualizacion de valores de las empresas");

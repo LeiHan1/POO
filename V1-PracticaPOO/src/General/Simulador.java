@@ -69,17 +69,16 @@ public class Simulador {
     }
 //4. eliminar cliente    
     public void operacion4(){
-        System.out.println ("<< Eliminar cliente >>");    
-        Escaner eliminar = new Escaner();
-                
-        String nom = eliminar.pedirNombre();
-        String documento = eliminar.pedirDni();
-        double dinero = eliminar.pedirSaldo();
-                
-        ClientePremium excliente = new ClientePremium(nom, documento, dinero);
-        banco.eliminarInversor(excliente);
-                
-        System.out.println("El cliente "+ nom + " con dni "+ documento + " y saldo "+ dinero +" ha sido eliminado");
+        System.out.println ("<< Eliminar cliente >>");
+        if (banco.getInversores().isEmpty()){
+            System.out.println("No hay ningún cliente.");
+        } else {
+            Escaner eliminar = new Escaner();
+            String nom = eliminar.pedirNombre();
+            int i = banco.buscarCliente(nom);
+            banco.eliminarInversor(i);
+            System.out.println("El cliente "+ nom +" ha sido eliminado");
+        }
     }
 // realizar copia de seguridad del banco    
 /**/    public void operacion5(){
@@ -111,16 +110,37 @@ public class Simulador {
 //añadir empresa a la bolsa    
     public void operacion9(){
         System.out.println ("<< Añadir empresa a la bolsa >>");
-        bolsa.opAnadirEmpresa();
+        //bolsa.opAnadirEmpresa();
+        Escaner es = new Escaner();
+        String nombreEmpresa = es.pedirNomEmpresa();
+        double actual = es.pedirValorActual();
+        Empresa e = new Empresa(nombreEmpresa,actual);
+        bolsa.entrarBolsa(e);
+        System.out.println ("Empresa añadida");
+        
     }
 // eliminar empresa de la bolsa    
     public void operacion10(){
         System.out.println ("<< Eliminar empresa de la bolsa >>");
-        bolsa.opEliminarEmpresa();
+        if (bolsa.getListaEmpresas().isEmpty()){
+            System.out.println ("No hay ninguna empresa.");
+        } else{
+            Escaner es = new Escaner();
+            String nombreE = es.pedirNomEmpresa();
+            int i = bolsa.buscarEmpresa(nombreE);
+            if (this.bolsa.existeEmpresa() == true){
+                this.bolsa.borrarEmpresa(i);
+                System.out.println("Empresa eliminada.");
+            } else {
+                System.out.println("No existe esta empresa.");
+            } 
+        }// end else
     }
+
 // actualizar valores    
 /**/    public void operacion11(){
         System.out.println ("<< Actualizacion de valores >>"); 
+        /*
         System.out.println ("introduce nombre de la bolsa");
         Escaner datos = new Escaner();  
         String nombreB = datos.pedirNomBolsa();
@@ -128,7 +148,8 @@ public class Simulador {
         System.out.println ("bolsa creada");
         bolsa.opAnadirEmpresa();
         bolsa.opActualizacionDeValores();
-    // hay que revisar
+        */
+        // hay que revisar
     }
 // realizar copia de seguridad de la bolsa  
     /**
