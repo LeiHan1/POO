@@ -1,5 +1,4 @@
 # POO
---------------------------------------------
 ## BIENVENIDO AL MENU 
 0.- Salir √
 
@@ -47,4 +46,6 @@
 
 --------------------------------------------
 
-Los metodos de las operaciones se implementan en la clase SIMULADOR
+Los metodos de las operaciones se implementan en la clase SIMULADOR.
+
+Cuando una operacion esta implementada bien, poner el tick √
