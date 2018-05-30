@@ -10,7 +10,7 @@
 ### BANCO
 3.- Añadir cliente.√
 
-4.- Eliminar cliente.
+4.- Eliminar cliente.√
 
 5.- Realizar copia de seguridad.
 
