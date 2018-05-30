@@ -44,6 +44,7 @@
 17.- Imprimir operaciones pendientes.
 
 18.- Ejecutar operaciones pendientes.
+
 --------------------------------------------
 
 Los metodos de las operaciones se implementan en la clase SIMULADOR
