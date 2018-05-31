@@ -116,8 +116,7 @@ public class Simulador implements Serializable{
         }
         
 //6. restaurar copia de seguridad del banco    
-    public void operacion6() throws FileNotFoundException, IOException{
-            
+    public void operacion6() throws FileNotFoundException, IOException{         
         ObjectInputStream ois;
         try{        
             ois = new ObjectInputStream( new FileInputStream("Copia de Seguridad de Clientes"));
@@ -127,8 +126,6 @@ public class Simulador implements Serializable{
             System.out.println("No se encuentra el archivo");
         }   
     }
-    
-
 
 //7. mejorar un cliente a premium    
     public void operacion7(){
@@ -199,19 +196,19 @@ public class Simulador implements Serializable{
     }
 
 //12. realizar copia de seguridad de la bolsa
- public void operacion12() throws IOException{
-    System.out.println ("<< Realizar copia de seguridad de la bolsa>>"); 
-    bolsa.opRealizarCopia();
- }
+    public void operacion12() throws IOException{
+        System.out.println ("<< Realizar copia de seguridad de la bolsa>>"); 
+        bolsa.opRealizarCopia();
+    }
  
  //13. restaurar copia de seguridad de la bolsa
- public void operacion13() throws IOException, ClassNotFoundException{
-    System.out.println ("<< Restaurar copia de seguridad de la bolsa>>"); 
-    bolsa.opRestaurarCopia();
-
+    public void operacion13() throws IOException, ClassNotFoundException{
+        System.out.println ("<< Restaurar copia de seguridad de la bolsa>>"); 
+        bolsa.opRestaurarCopia();
     }
-// solicitar compra de acciones
-/**/    public void operacion14(){
+    
+ //14. solicitar compra de acciones
+/**/public void operacion14(){
         System.out.println ("<< Solicitar compra de acciones >>"); 
         agente.opSolicitaCompraAcciones();  
     // hay que revisar

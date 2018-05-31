@@ -179,7 +179,7 @@ public class BolsaDeValores implements Serializable{
                     break;
                 } else {
                     this.existeEmpresa = false;
-                } 
+                }
             }
         //} // end if else
         return indice;
