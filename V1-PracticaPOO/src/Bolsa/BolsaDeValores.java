@@ -218,17 +218,18 @@ public class BolsaDeValores implements Serializable{
 
     public void opRestaurarCopia() throws FileNotFoundException, IOException {
         ObjectInputStream ois;
-        
-        
-    try{
-                
+        try{   
             ois = new ObjectInputStream( new FileInputStream("Copia de Seguridad de Bolsa"));
             listaEmpresas = (ArrayList<Empresa>) ois.readObject();
         } catch (ClassNotFoundException e){
-               
-                System.out.println("No se encuentra el archivo");
-            }    }
+            System.out.println("No se encuentra el archivo");
+            }    
     }
+    
+    
+    
+    
+}
 
         
     

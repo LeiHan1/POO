@@ -132,8 +132,7 @@ public class Simulador implements Serializable{
 
 //7. mejorar un cliente a premium    
     public void operacion7(){
-        System.out.println ("<< Mejora cliente a premium >>");
-            
+        System.out.println ("<< Mejora cliente a premium >>");     
         if (banco.getInversores().isEmpty()){
             System.out.println("No hay ningún cliente.");
         } else {
@@ -196,19 +195,19 @@ public class Simulador implements Serializable{
 //11. actualizar valores    
     public void operacion11(){
         System.out.println ("<< Actualizacion de valores de las empresas >>");
-        bolsa.opActualizacionDeValores();
-        
-        
+        bolsa.opActualizacionDeValores();  
     }
 
- public void operacion12() throws IOException{    
-        bolsa.opRealizarCopia();
-    
-    }
-  
+//12. realizar copia de seguridad de la bolsa
+ public void operacion12() throws IOException{
+    System.out.println ("<< Realizar copia de seguridad de la bolsa>>"); 
+    bolsa.opRealizarCopia();
+ }
+ 
+ //13. restaurar copia de seguridad de la bolsa
  public void operacion13() throws IOException, ClassNotFoundException{
-    
-        bolsa.opRestaurarCopia();
+    System.out.println ("<< Restaurar copia de seguridad de la bolsa>>"); 
+    bolsa.opRestaurarCopia();
 
     }
 // solicitar compra de acciones
