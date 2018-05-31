@@ -5,11 +5,13 @@
  */
 package Banco;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Han Lei
  */
-public class ClientePremium extends Cliente{
+public class ClientePremium extends Cliente implements Serializable{
     private GestorDeInversiones gestor;
 
 //constructor    

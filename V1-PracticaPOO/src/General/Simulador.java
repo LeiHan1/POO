@@ -7,15 +7,22 @@ package General;
 
 import Banco.*;
 import Bolsa.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Adrian
  */
-public class Simulador {
+public class Simulador implements Serializable{
+    
     public Banco banco;
     public ArrayList <ClientePremium> listaClientes;
     public AgenteDeInversiones agente;
@@ -23,10 +30,13 @@ public class Simulador {
     public BolsaDeValores bolsa;
     public int num;
     
+    
+    
     InterfazDeUsuario interfaz = new InterfazDeUsuario();
 
 // --- constructor --- //   
     public Simulador(){
+        
         agente = new AgenteDeInversiones("Ana", "456");
         banco = new Banco("BancoA", "Carlos", "2222");
         gestor = new GestorDeInversiones("Ana", "3333");
@@ -80,16 +90,48 @@ public class Simulador {
             System.out.println("El cliente "+ nom +" ha sido eliminado");
         }
     }
-// realizar copia de seguridad del banco    
-/**/    public void operacion5(){
-        System.out.println ("<< Realizar copia de seguridad(banco) >>");
-        // ! FALTA POR IMPLEMENTAR !
+    
+    public void operacion5(){
+        File archivo;
+        
+        ObjectOutputStream oss;
+        
+        
+        archivo = new File("Copia de Seguridad de Clientes");
+        try {    
+            listaClientes = banco.getInversores();
+            System.out.println(listaClientes);
+            oss = new ObjectOutputStream (new FileOutputStream(archivo));   
+            oss.writeObject(listaClientes);
+            oss.close();
+            
+        } catch (IOException ex) { }  
+        int datos = banco.getInversores().size();
+        System.out.println("Se ha creado una Copia de Seguridad en la carpeta del proyecto con "+ datos+ " Clientes");
+        }
+        
+    
+    public void operacion6() throws FileNotFoundException, IOException{
+            
+            ObjectInputStream ois;
+            
+            
+    try{
+                
+            ois = new ObjectInputStream( new FileInputStream("Copia de Seguridad de Clientes"));
+            
+            Object aux = ois.readObject();
+            System.out.println(aux);
+            
+
+        } catch (ClassNotFoundException e){
+               
+                System.out.println("No se encuentra el archivo");
+            }   
     }
-// recuperar informacion de la copia de seguridad del banco    
-/**/    public void operacion6(){
-        System.out.println ("<< Restaurar copia de seguridad(banco) >>");
-        // ! FALTA POR IMPLEMENTAR !
-    }
+    
+
+
 // mejorar un cliente a premium    
     public void operacion7(){
         System.out.println ("<< Mejora cliente a premium >>");
@@ -139,47 +181,20 @@ public class Simulador {
 
 // actualizar valores    
 /**/    public void operacion11(){
-        System.out.println ("<< Actualizacion de valores >>"); 
-        /*
-        System.out.println ("introduce nombre de la bolsa");
-        Escaner datos = new Escaner();  
-        String nombreB = datos.pedirNomBolsa();
-        bolsa = new BolsaDeValores(nombreB);
-        System.out.println ("bolsa creada");
-        bolsa.opAnadirEmpresa();
         bolsa.opActualizacionDeValores();
-        */
-        // hay que revisar
+        
+        
     }
-// realizar copia de seguridad de la bolsa  
-    /**
-     *
-     * @throws java.io.IOException
-     */
-/**/    public void operacion12() throws IOException{
-        System.out.println ("<< Realizar copia de seguridad(bolsa) >>");
-        /*
-        Escaner datos = new Escaner();  
-        String nombreB = datos.pedirNomBolsa();
-        bolsa = new BolsaDeValores(nombreB);        
-        System.out.println ("bolsa creada");
-        */
+
+ public void operacion12() throws IOException{    
         bolsa.opRealizarCopia();
-    // hay que revisar
+    
     }
-// restaurar copia de seguridad
-    /**
-     *
-     * @throws java.io.IOException
-     */
-/**/    public void operacion13() throws IOException, ClassNotFoundException{
-    System.out.println ("<< Restaurar copia de seguridad(bolsa) >>");
-        Escaner datos = new Escaner();  
-        String nombreB = datos.pedirNombre();
-        bolsa = new BolsaDeValores(nombreB);
-        System.out.println ("bolsa creada");
+  
+ public void operacion13() throws IOException, ClassNotFoundException{
+    
         bolsa.opRestaurarCopia();
-    // hay que revisar
+
     }
 // solicitar compra de acciones
 /**/    public void operacion14(){
