@@ -12,24 +12,24 @@
 
 4.- Eliminar cliente.√
 
-5.- Realizar copia de seguridad.
+5.- Realizar copia de seguridad.√
 
-6.- Restaurar copia de seguridad.
+6.- Restaurar copia de seguridad.√
 
 7.- Mejorar a cliente premium.√
 
-8.- Solicitar recomendacion de inversion.
+8.- Solicitar recomendacion de inversion.√
 
 ### BOLSA
 9.- Añadir empresa a la bolsa.√
 
 10.- Eliminar empresa de la bolsa.√
 
-11.- Actualizacion de valores.
+11.- Actualizacion de valores.√
 
-12.- Realizar copia de seguridad.
+12.- Realizar copia de seguridad.√
 
-13.- Restaurar copia de seguridad.
+13.- Restaurar copia de seguridad.√
 
 ### OPERACIONES
 
@@ -48,4 +48,4 @@
 
 Los metodos de las operaciones se implementan en la clase SIMULADOR.
 
-Cuando una operacion esta implementada bien, poner el tick √
+Cuando una operacion esta bien implementada , poner el tick √
