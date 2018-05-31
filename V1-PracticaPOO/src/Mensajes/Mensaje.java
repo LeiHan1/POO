@@ -25,8 +25,7 @@ public class Mensaje {
     
     public void rescatarMensajeBanco(){
         for (Mensaje mensaje:listaPeticiones){
-            if mensaje 
-            System.out.println(MensajeCompra.getTexto());
+            mensaje.cantidadInvertir;
         }
          
     }
