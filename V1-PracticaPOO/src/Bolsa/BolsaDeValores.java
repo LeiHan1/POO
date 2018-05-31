@@ -103,6 +103,21 @@ public class BolsaDeValores implements Serializable{
         this.listaBancos = listaBancos;
     }
 */    
+    public int buscarEmpresaRecomendada(){
+        int indice = 0;
+        ArrayList<Empresa> lista = this.getListaEmpresas();
+        double variacionMax = lista.get(0).getVariacion();
+        for (int i = 0; i < this.getListaEmpresas().size(); i++){
+            if (variacionMax <= lista.get(i).getVariacion()){
+                variacionMax = lista.get(i).getVariacion();
+                indice = i;
+            }
+        }            
+        //} // end if else
+        return indice;
+    }
+    
+    
     public void guardarDatos(String ruta, BolsaDeValores b) throws IOException{
         
         ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream (ruta));
@@ -172,18 +187,15 @@ public class BolsaDeValores implements Serializable{
 
     
     public void opActualizacionDeValores(){ //11.actualizacion de valores de acciones
-        System.out.println ("Actualizacion de valores de las empresas");
-        
-        
-        for (Empresa listaEmpresa : listaEmpresas) {//buscar elemento por nombre
+        for (Empresa listaEmpresa : listaEmpresas) {
             int aleatorio = (int) Math.floor(Math.random()*(1500-(-1500)+1)+-1500);
             double nuevoValor = listaEmpresa.getValorActual() + aleatorio;
             listaEmpresa.setValorPrevio(listaEmpresa.getValorActual());
             
             listaEmpresa.setValorActual(nuevoValor);
             listaEmpresa.setVariacion(listaEmpresa.getVariacion(), aleatorio);
-            System.out.println ("Valores actualizados");
         }
+        System.out.println ("Valores actualizados");
     }
 
     public void opRealizarCopia() throws IOException{ //12.realizar copia de seguridad

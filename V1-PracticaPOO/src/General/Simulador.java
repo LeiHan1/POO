@@ -26,7 +26,7 @@ public class Simulador implements Serializable{
     public Banco banco;
     public ArrayList <ClientePremium> listaClientes;
     public AgenteDeInversiones agente;
-    public GestorDeInversiones gestor;
+  //  public GestorDeInversiones gestor;
     public BolsaDeValores bolsa;
     public int num;
     
@@ -39,14 +39,21 @@ public class Simulador implements Serializable{
         
         agente = new AgenteDeInversiones("Ana", "456");
         banco = new Banco("BancoA", "Carlos", "2222");
-        gestor = new GestorDeInversiones("Ana", "3333");
+        GestorDeInversiones Bob = new GestorDeInversiones("Bob", "S3333");
         bolsa = new BolsaDeValores("bolsa1");
         ClientePremium Lei = new ClientePremium("Lei", "G123", 2000);
+        Lei.setPremium(true);
+        Lei.asignarGestor(Bob);
+        ClientePremium Carlos = new ClientePremium("Carlos", "C123", 1500);
         banco.aniadirInversor(Lei);
+        banco.aniadirInversor(Carlos);
+        
         Empresa e1 = new Empresa("EmpresaA", 2000);
         Empresa e2 = new Empresa("EmpresaB", 3500);
         bolsa.aniadirEmpresa(e1);
         bolsa.aniadirEmpresa(e2);
+        bolsa.opActualizacionDeValores();
+        
     }
 
 // --- las operaciones del menu --- //
@@ -90,13 +97,11 @@ public class Simulador implements Serializable{
             System.out.println("El cliente "+ nom +" ha sido eliminado");
         }
     }
-    
+//5. realizar copia de seguridad del banco    
     public void operacion5(){
-        File archivo;
-        
-        ObjectOutputStream oss;
-        
-        
+        System.out.println ("<< Realizar copia de seguridad >>");
+        File archivo; 
+        ObjectOutputStream oss;  
         archivo = new File("Copia de Seguridad de Clientes");
         try {    
             listaClientes = banco.getInversores();
@@ -110,29 +115,22 @@ public class Simulador implements Serializable{
         System.out.println("Se ha creado una Copia de Seguridad en la carpeta del proyecto con "+ datos+ " Clientes");
         }
         
-    
+//6. restaurar copia de seguridad del banco    
     public void operacion6() throws FileNotFoundException, IOException{
             
-            ObjectInputStream ois;
-            
-            
-    try{
-                
+        ObjectInputStream ois;
+        try{        
             ois = new ObjectInputStream( new FileInputStream("Copia de Seguridad de Clientes"));
-            
             Object aux = ois.readObject();
             System.out.println(aux);
-            
-
-        } catch (ClassNotFoundException e){
-               
-                System.out.println("No se encuentra el archivo");
-            }   
+        } catch (ClassNotFoundException e){   
+            System.out.println("No se encuentra el archivo");
+        }   
     }
     
 
 
-// mejorar un cliente a premium    
+//7. mejorar un cliente a premium    
     public void operacion7(){
         System.out.println ("<< Mejora cliente a premium >>");
             
@@ -144,12 +142,28 @@ public class Simulador implements Serializable{
             banco.hacerClientePremium(n);
         }
     }
-// solicitar recomendacion de inversion    
-/**/    public void operacion8(){
+//8. solicitar recomendacion de inversion    
+    public void operacion8(){
         System.out.println ("<< Solicita recomendacion de inversion >>");
-        // ! FALTA POR IMPLEMENTAR !
+        Escaner es = new Escaner();
+        System.out.println ("Introduce su nombre: ");
+        String nomCliente = es.pedirNombre();
+        int iCliente = banco.buscarCliente(nomCliente);
+        if (banco.existeCliente() == false){
+            System.out.println ("No existe el cliente.");        
+        } else {
+            if (banco.getInversores().get(iCliente).isPremium() == false) {
+                System.out.println ("Usted no es cliente premium, no puede solicitar recomendacion.");
+            } else {
+                int jEmpresa = bolsa.buscarEmpresaRecomendada();
+                Empresa e = bolsa.getListaEmpresas().get(jEmpresa);
+                System.out.print("Su gestor " + banco.getInversores().get(jEmpresa).getNomGestor());
+                System.out.println(" le recomienda invertir en la empresa: " + e.getNombre() + " con valor actual: "+e.getValorActual()+" y variacion: " + e.getVariacion());
+            }  
+        }
     }
-//añadir empresa a la bolsa    
+
+//9. añadir empresa a la bolsa    
     public void operacion9(){
         System.out.println ("<< Añadir empresa a la bolsa >>");
         //bolsa.opAnadirEmpresa();
@@ -161,7 +175,7 @@ public class Simulador implements Serializable{
         System.out.println ("Empresa añadida");
         
     }
-// eliminar empresa de la bolsa    
+//10. eliminar empresa de la bolsa    
     public void operacion10(){
         System.out.println ("<< Eliminar empresa de la bolsa >>");
         if (bolsa.getListaEmpresas().isEmpty()){
@@ -179,8 +193,9 @@ public class Simulador implements Serializable{
         }// end else
     }
 
-// actualizar valores    
-/**/    public void operacion11(){
+//11. actualizar valores    
+    public void operacion11(){
+        System.out.println ("<< Actualizacion de valores de las empresas >>");
         bolsa.opActualizacionDeValores();
         
         
