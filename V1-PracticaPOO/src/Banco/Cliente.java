@@ -5,7 +5,6 @@
  */
 package Banco;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.lang.Object;
 
@@ -13,7 +12,7 @@ import java.lang.Object;
  *
  * @author sergio
  */
-public class Cliente extends Persona implements Serializable{
+public class Cliente extends Persona{
     
     private double saldo;
     private ArrayList <PaqueteDeAcciones> cartera;

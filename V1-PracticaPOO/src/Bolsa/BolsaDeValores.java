@@ -6,9 +6,7 @@
 package Bolsa;
 
 import General.Escaner;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -103,21 +101,6 @@ public class BolsaDeValores implements Serializable{
         this.listaBancos = listaBancos;
     }
 */    
-    public int buscarEmpresaRecomendada(){
-        int indice = 0;
-        ArrayList<Empresa> lista = this.getListaEmpresas();
-        double variacionMax = lista.get(0).getVariacion();
-        for (int i = 0; i < this.getListaEmpresas().size(); i++){
-            if (variacionMax <= lista.get(i).getVariacion()){
-                variacionMax = lista.get(i).getVariacion();
-                indice = i;
-            }
-        }            
-        //} // end if else
-        return indice;
-    }
-    
-    
     public void guardarDatos(String ruta, BolsaDeValores b) throws IOException{
         
         ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream (ruta));
@@ -179,7 +162,7 @@ public class BolsaDeValores implements Serializable{
                     break;
                 } else {
                     this.existeEmpresa = false;
-                }
+                } 
             }
         //} // end if else
         return indice;
@@ -187,66 +170,65 @@ public class BolsaDeValores implements Serializable{
 
     
     public void opActualizacionDeValores(){ //11.actualizacion de valores de acciones
-        for (Empresa listaEmpresa : listaEmpresas) {
-            int aleatorio = (int) Math.floor(Math.random()*(1500-(-1500)+1)+-1500);
-            double nuevoValor = listaEmpresa.getValorActual() + aleatorio;
+        System.out.println ("Actualizacion de valores de las empresas");
+        double min = 0;
+        double max = 150;
+        for (Empresa listaEmpresa : listaEmpresas) { //buscar elemento por nombre
+            double nuevoValor = ThreadLocalRandom.current().nextDouble(min, max);
             listaEmpresa.setValorPrevio(listaEmpresa.getValorActual());
-            
             listaEmpresa.setValorActual(nuevoValor);
-            listaEmpresa.setVariacion(listaEmpresa.getVariacion(), aleatorio);
+            System.out.println ("Valores actualizadas");
         }
-        System.out.println ("Valores actualizados");
     }
-
     public void opRealizarCopia() throws IOException{ //12.realizar copia de seguridad
-        System.out.println ("Realizar copia de seguridad (bolsa)");
-        File archivo;
+        //System.out.println ("Realizar copia de seguridad (bolsa)");
+        System.out.println ("Introduce la ruta");
+        Scanner scanner = new Scanner(System.in);
+        String ruta = scanner.nextLine();
         
-        ObjectOutputStream oss;
-        
-        
-        archivo = new File("Copia de Seguridad de Bolsa");
-        try {    
-            
-            oss = new ObjectOutputStream (new FileOutputStream(archivo));   
-            oss.writeObject(listaEmpresas);
-            oss.close();
-        } catch (IOException ex) { }  
-        int datos = listaEmpresas.size();
-        System.out.println("Se ha creado una Copia de Seguridad en la carpeta del proyecto con "+ datos+ " Empresas");
+        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream (ruta));
+        try {          
+            file.writeObject(listaEmpresas);                
+        } catch (IOException ex) {            
+            System.out.println("Error en la escritura del archivo. Codigo de error:"+ex);
         }
-
-    public void opRestaurarCopia() throws FileNotFoundException, IOException {
-        ObjectInputStream ois;
-        try{   
-            ois = new ObjectInputStream( new FileInputStream("Copia de Seguridad de Bolsa"));
-            listaEmpresas = (ArrayList<Empresa>) ois.readObject();
-        } catch (ClassNotFoundException e){
-            System.out.println("No se encuentra el archivo");
-            }    
+        finally{            
+            file.close();            
+        }        
     }
+    
+    public void opRestaurarCopia()throws IOException, ClassNotFoundException{ //13.restaurar copia de seguridad
+        System.out.println ("Restaurar copia de seguridad (bolsa)");
+        System.out.println ("Introduce la ruta");
+        Scanner scanner = new Scanner(System.in);
+        String ruta = scanner.nextLine();
+        
+        ObjectInputStream file = new ObjectInputStream(new FileInputStream(ruta));
+        try {
+            file.readObject();
+        }        
+        catch(IOException ex){            
+            System.out.println("Error en la lectura del archivo.");
+        }
+        catch(ClassNotFoundException e){          
+            System.out.println("Error en la lectura del fichero.");
+        }
+        finally{
+            file.close();
+        }
+        
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
     
 }
-
-        
-    
-        
-        
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-

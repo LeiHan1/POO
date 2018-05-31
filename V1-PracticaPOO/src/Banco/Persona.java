@@ -5,13 +5,11 @@
  */
 package Banco;
 
-import java.io.Serializable;
-
 /**
  *
  * @author Han Lei
  */
-public class Persona implements Serializable{
+public class Persona {
     
     protected String nombre;
     protected String dni;

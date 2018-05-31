@@ -5,15 +5,39 @@
  */
 package Mensajes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sergio
  */
 public class Mensaje {
     
-    protected String nombreCliente;
-    protected String nombreEmpresa;
-    protected int id;
+    private String nombreCliente;
+    private String nombreEmpresa;
+    private int id;
+    private ArrayList<Mensaje>listaPeticiones = new ArrayList<>();
+    
+    public void aniadirMensaje(Mensaje m){
+
+       listaPeticiones.add(m);
+    }
+    
+    public void rescatarMensajeBanco(){
+        for (Mensaje mensaje:listaPeticiones){
+            if mensaje 
+            System.out.println(MensajeCompra.getTexto());
+        }
+         
+    }
+
+    public ArrayList<Mensaje> getListaPeticiones() {
+        return listaPeticiones;
+    }
+
+    public void setListaPeticiones(ArrayList<Mensaje> listaPeticiones) {
+        this.listaPeticiones = listaPeticiones;
+    }
 
     public String getNombreCliente() {
         return nombreCliente;

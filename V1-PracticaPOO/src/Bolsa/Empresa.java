@@ -5,13 +5,11 @@
  */
 package Bolsa;
 
-import java.io.Serializable;
-
 /**
  *
  * @author sergio
  */
-public class Empresa implements Serializable{
+public class Empresa {
     
     private String nombre;
     private double valorActual;

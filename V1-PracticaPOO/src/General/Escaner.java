@@ -106,8 +106,11 @@ public class Escaner {
     public double pedirCantidadAccion() {
         double valor;
         System.out.println("Introduce la cantidad a invertir: ");
-        Scanner actual = new Scanner(System.in);
-        valor = actual.nextDouble();
+        valor = 0;
+        while (valor < 0.5) DO{
+            Scanner actual = new Scanner(System.in);
+            valor = actual.nextDouble();
+        }
         return valor;
     }
     
