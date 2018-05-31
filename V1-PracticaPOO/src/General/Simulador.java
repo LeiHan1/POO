@@ -7,36 +7,53 @@ package General;
 
 import Banco.*;
 import Bolsa.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
  * @author Adrian
  */
-public class Simulador {
+public class Simulador implements Serializable{
+    
     public Banco banco;
     public ArrayList <ClientePremium> listaClientes;
     public AgenteDeInversiones agente;
-    public GestorDeInversiones gestor;
+  //  public GestorDeInversiones gestor;
     public BolsaDeValores bolsa;
     public int num;
+    
+    
     
     InterfazDeUsuario interfaz = new InterfazDeUsuario();
 
 // --- constructor --- //   
     public Simulador(){
+        
         agente = new AgenteDeInversiones("Ana", "456");
         banco = new Banco("BancoA", "Carlos", "2222");
-        gestor = new GestorDeInversiones("Ana", "3333");
+        GestorDeInversiones Bob = new GestorDeInversiones("Bob", "S3333");
         bolsa = new BolsaDeValores("bolsa1");
         ClientePremium Lei = new ClientePremium("Lei", "G123", 2000);
+        Lei.setPremium(true);
+        Lei.asignarGestor(Bob);
+        ClientePremium Carlos = new ClientePremium("Carlos", "C123", 1500);
         banco.aniadirInversor(Lei);
+        banco.aniadirInversor(Carlos);
+        
         Empresa e1 = new Empresa("EmpresaA", 2000);
         Empresa e2 = new Empresa("EmpresaB", 3500);
         bolsa.aniadirEmpresa(e1);
         bolsa.aniadirEmpresa(e2);
+        bolsa.opActualizacionDeValores();
+        
     }
 
 // --- las operaciones del menu --- //
@@ -80,20 +97,39 @@ public class Simulador {
             System.out.println("El cliente "+ nom +" ha sido eliminado");
         }
     }
-// realizar copia de seguridad del banco    
-/**/    public void operacion5(){
-        System.out.println ("<< Realizar copia de seguridad(banco) >>");
-        // ! FALTA POR IMPLEMENTAR !
-    }
-// recuperar informacion de la copia de seguridad del banco    
-/**/    public void operacion6(){
-        System.out.println ("<< Restaurar copia de seguridad(banco) >>");
-        // ! FALTA POR IMPLEMENTAR !
-    }
-// mejorar un cliente a premium    
-    public void operacion7(){
-        System.out.println ("<< Mejora cliente a premium >>");
+//5. realizar copia de seguridad del banco    
+    public void operacion5(){
+        System.out.println ("<< Realizar copia de seguridad >>");
+        File archivo; 
+        ObjectOutputStream oss;  
+        archivo = new File("Copia de Seguridad de Clientes");
+        try {    
+            listaClientes = banco.getInversores();
+            System.out.println(listaClientes);
+            oss = new ObjectOutputStream (new FileOutputStream(archivo));   
+            oss.writeObject(listaClientes);
+            oss.close();
             
+        } catch (IOException ex) { }  
+        int datos = banco.getInversores().size();
+        System.out.println("Se ha creado una Copia de Seguridad en la carpeta del proyecto con "+ datos+ " Clientes");
+        }
+        
+//6. restaurar copia de seguridad del banco    
+    public void operacion6() throws FileNotFoundException, IOException{         
+        ObjectInputStream ois;
+        try{        
+            ois = new ObjectInputStream( new FileInputStream("Copia de Seguridad de Clientes"));
+            Object aux = ois.readObject();
+            System.out.println(aux);
+        } catch (ClassNotFoundException e){   
+            System.out.println("No se encuentra el archivo");
+        }   
+    }
+
+//7. mejorar un cliente a premium    
+    public void operacion7(){
+        System.out.println ("<< Mejora cliente a premium >>");     
         if (banco.getInversores().isEmpty()){
             System.out.println("No hay ningún cliente.");
         } else {
@@ -102,12 +138,28 @@ public class Simulador {
             banco.hacerClientePremium(n);
         }
     }
-// solicitar recomendacion de inversion    
-/**/    public void operacion8(){
+//8. solicitar recomendacion de inversion    
+    public void operacion8(){
         System.out.println ("<< Solicita recomendacion de inversion >>");
-        // ! FALTA POR IMPLEMENTAR !
+        Escaner es = new Escaner();
+        System.out.println ("Introduce su nombre: ");
+        String nomCliente = es.pedirNombre();
+        int iCliente = banco.buscarCliente(nomCliente);
+        if (banco.existeCliente() == false){
+            System.out.println ("No existe el cliente.");        
+        } else {
+            if (banco.getInversores().get(iCliente).isPremium() == false) {
+                System.out.println ("Usted no es cliente premium, no puede solicitar recomendacion.");
+            } else {
+                int jEmpresa = bolsa.buscarEmpresaRecomendada();
+                Empresa e = bolsa.getListaEmpresas().get(jEmpresa);
+                System.out.print("Su gestor " + banco.getInversores().get(jEmpresa).getNomGestor());
+                System.out.println(" le recomienda invertir en la empresa: " + e.getNombre() + " con valor actual: "+e.getValorActual()+" y variacion: " + e.getVariacion());
+            }  
+        }
     }
-//añadir empresa a la bolsa    
+
+//9. añadir empresa a la bolsa    
     public void operacion9(){
         System.out.println ("<< Añadir empresa a la bolsa >>");
         //bolsa.opAnadirEmpresa();
@@ -119,7 +171,7 @@ public class Simulador {
         System.out.println ("Empresa añadida");
         
     }
-// eliminar empresa de la bolsa    
+//10. eliminar empresa de la bolsa    
     public void operacion10(){
         System.out.println ("<< Eliminar empresa de la bolsa >>");
         if (bolsa.getListaEmpresas().isEmpty()){
@@ -137,56 +189,28 @@ public class Simulador {
         }// end else
     }
 
-// actualizar valores    
-/**/    public void operacion11(){
-        System.out.println ("<< Actualizacion de valores >>"); 
-        /*
-        System.out.println ("introduce nombre de la bolsa");
-        Escaner datos = new Escaner();  
-        String nombreB = datos.pedirNomBolsa();
-        bolsa = new BolsaDeValores(nombreB);
-        System.out.println ("bolsa creada");
-        bolsa.opAnadirEmpresa();
-        bolsa.opActualizacionDeValores();
-        */
-        // hay que revisar
+//11. actualizar valores    
+    public void operacion11(){
+        System.out.println ("<< Actualizacion de valores de las empresas >>");
+        bolsa.opActualizacionDeValores();  
     }
-// realizar copia de seguridad de la bolsa  
-    /**
-     *
-     * @throws java.io.IOException
-     */
-/**/    public void operacion12() throws IOException{
-        System.out.println ("<< Realizar copia de seguridad(bolsa) >>");
-        /*
-        Escaner datos = new Escaner();  
-        String nombreB = datos.pedirNomBolsa();
-        bolsa = new BolsaDeValores(nombreB);        
-        System.out.println ("bolsa creada");
-        */
+
+//12. realizar copia de seguridad de la bolsa
+    public void operacion12() throws IOException{
+        System.out.println ("<< Realizar copia de seguridad de la bolsa>>"); 
         bolsa.opRealizarCopia();
-    // hay que revisar
     }
-// restaurar copia de seguridad
-    /**
-     *
-     * @throws java.io.IOException
-     */
-/**/    public void operacion13() throws IOException, ClassNotFoundException{
-    System.out.println ("<< Restaurar copia de seguridad(bolsa) >>");
-        Escaner datos = new Escaner();  
-        String nombreB = datos.pedirNombre();
-        bolsa = new BolsaDeValores(nombreB);
-        System.out.println ("bolsa creada");
+ 
+ //13. restaurar copia de seguridad de la bolsa
+    public void operacion13() throws IOException, ClassNotFoundException{
+        System.out.println ("<< Restaurar copia de seguridad de la bolsa>>"); 
         bolsa.opRestaurarCopia();
-    // hay que revisar
     }
-// solicitar compra de acciones
-/**/    public void operacion14(){
+    
+ //14. solicitar compra de acciones
+/**/public void operacion14(){
         System.out.println ("<< Solicitar compra de acciones >>"); 
-        //pedir datos
-        //crearobjeto
-        //añadir objeto
+        agente.opSolicitaCompraAcciones();  
     // hay que revisar
     }
 // solicitar venta de acciones 

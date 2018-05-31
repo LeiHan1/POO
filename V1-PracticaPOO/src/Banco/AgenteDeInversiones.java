@@ -15,15 +15,28 @@ import java.util.Scanner;
  */
 public class AgenteDeInversiones extends Persona {
     
+    private static ArrayList<Mensaje>listaPeticiones;
+    
     public AgenteDeInversiones (String n, String d){
         this.nombre = n;
         this.dni = d;
+        listaPeticiones = new ArrayList<>();
     }
     
     //public String codificacionPeticion(Mensaje p){}
 
+    public static int getTamañoListaPeticiones() {
+        return listaPeticiones.size();
+    }
+
+    public void setListaPeticiones(ArrayList<Mensaje> listaPeticiones) {
+        this.listaPeticiones = listaPeticiones;
+    }
     
-    
+    public Mensaje recatarMensajeBanco(){
+        
+        return listaPeticiones.get(0);
+    }
     
     public String intentaOperacion(String mensajeCodificado){
         
@@ -83,6 +96,5 @@ public class AgenteDeInversiones extends Persona {
     
     
     }
-
     
 }

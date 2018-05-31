@@ -5,11 +5,13 @@
  */
 package Banco;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Han Lei
  */
-public class ClientePremium extends Cliente{
+public class ClientePremium extends Cliente implements Serializable{
     private GestorDeInversiones gestor;
 
 //constructor    
@@ -26,12 +28,14 @@ public class ClientePremium extends Cliente{
         //super.setPremium(true);
         this.gestor = g;
     }
-        
+       
+    /*
     public void asignarGestor(String nombre, String dni){    
         //super.setPremium(true);
-        this.gestor.nombre = nombre;
-        this.gestor.dni = dni;
+        this.gestor.setNombre(nombre);
+        this.gestor.setDni(dni);
     }
+*/
     
     public GestorDeInversiones getGestor(){
         return this.gestor;
