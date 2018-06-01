@@ -64,6 +64,6 @@ public class MensajeVenta extends Mensaje{
 @Override
     public void imprimir(){
         
-        System.out.println( " |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
+        System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
     }
 }

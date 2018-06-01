@@ -7,6 +7,9 @@ package Banco;
 
 
 import General.Escaner;
+import Mensajes.Mensaje;
+import Mensajes.MensajeCompra;
+import Mensajes.MensajeVenta;
     import java.util.ArrayList;
     import java.io.ObjectOutputStream;
     import java.io.ObjectInputStream;
@@ -126,41 +129,49 @@ public class Banco implements Serializable{
      
     }
     
-/*    
-    public void peticionCompra(Peticion p, ArrayList<String> lista){
+public void opSolicitaCompraAcciones(){ //14.solicitar compra de acciones
+    //solicitar datos
+        Escaner es = new Escaner();
+        System.out.println ("Solicitar compra de acciones");
+        String nombreCliente = es.pedirNombre();
         
-        String pet = p.toString();
-        lista.add(pet);
-    }
-*/
+        
+ 
+        String nombreEmpresa = es.pedirNomEmpresa();
+
+        double cantidad = es.pedirCantidadAccion();
+
+        
     
-/*    
-    public String toString(Peticion p){
-        
-        String sol = ("Solicitud de compra:\n Identificador: "+p.getId()+".\n Nombre del Cliente: "+p.getNombreCliente()+".\n Nombre de la Empresa: "+p.getNombreEmpresa()+".\n Catidad Maxima: "+p.getCantidadInvertir()+" €");
-        return sol;
-    }
-*/    
-    public void guardarDatosBanco(String ruta, ArrayList<Banco> bancos) throws IOException{
-        
-        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream (ruta));
-        try {
-            
-            for(Banco b:bancos){
-                
-                file.writeObject(b);
-            }
-        } catch (IOException ex) {
-            
-            System.out.println("Error en la escritura del archivo.");
-        }
-        finally{
-            file.close();
-            System.out.println("Archivo guardado correctamente.");
-            
-        }
-        
+        Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
+        agente.getListaPeticiones().add(p);
+   
+        p.imprimir();
     }
     
+    public void opSolicitaVentaAcciones(){ //15.solicitar venta de acciones
+    //solicitar datos
+        System.out.println ("Solicitar venta de acciones");
+        Escaner es = new Escaner();
+        String nombreC = es.pedirNombre();
+        
+        String nombreE = es.pedirNomEmpresa();
+        
+        int titulos = es.pedirTitulosVender();
+        
     
-}
+        Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
+        agente.getListaPeticiones().add(p);
+        //System.out.println();
+        p.imprimir();
+    
+    }
+
+    public AgenteDeInversiones getAgente() {
+        return agente;
+    }
+    
+        
+    }
+    
+    

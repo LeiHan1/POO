@@ -29,59 +29,19 @@ public class AgenteDeInversiones extends Persona {
     
     //public String codificacionPeticion(Mensaje p){}
 
-    
-    
-    
-    public String intentaOperacion(String mensajeCodificado){
-        
-        String sId= mensajeCodificado.substring(38);
-        String sCliente= mensajeCodificado.substring(62);
-        String sEmpresa= mensajeCodificado.substring(86);
-        String sCantidad= mensajeCodificado.substring(104);
-        String mensajeCod = (sId+" | "+sCliente+" | "+sEmpresa+" | "+sCantidad);
-        return mensajeCod;
+    public ArrayList<Mensaje> getListaPeticiones() {
+        return listaPeticiones;
     }
-    
-    public void opSolicitaCompraAcciones(){ //14.solicitar compra de acciones
-    //solicitar datos
-        Escaner es = new Escaner();
-        System.out.println ("Solicitar compra de acciones");
-        String nombreCliente = es.pedirNombre();
- 
-        String nombreEmpresa = es.pedirNomEmpresa();
 
-        double cantidad = es.pedirCantidadAccion();
+    
+    
+    
 
-        
-    //hay que anadir la condicion de que si existe el cliente y tiene saldo
-        Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
-        listaPeticiones.add(p);
-        //System.out.println(MensajeCompra.getTexto());
-        //System.out.println(listaPeticiones);
-        p.imprimir();
-    }
     
-    public void opSolicitaVentaAcciones(){ //15.solicitar venta de acciones
-    //solicitar datos
-        System.out.println ("Solicitar venta de acciones");
-        Escaner es = new Escaner();
-        String nombreC = es.pedirNombre();
-        
-        String nombreE = es.pedirNomEmpresa();
-        
-        int titulos = es.pedirTitulosVender();
-        
-    //almacenar en la lista    
-    //hay que anadir la condicion de que si existe el cliente y tiene saldo
-        Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
-        listaPeticiones.add(p);
-        //System.out.println();
-        p.imprimir();
     
-    }
     
     public void opSolicitaActualizacionAcciones(){ //16.solicitar actualizacion de acciones
-    // falta por hacer
+    
     
     }
     

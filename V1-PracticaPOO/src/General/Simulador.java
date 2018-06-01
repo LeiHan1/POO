@@ -210,13 +210,13 @@ public class Simulador implements Serializable{
  //14. solicitar compra de acciones
 /**/public void operacion14(){
         System.out.println ("<< Solicitar compra de acciones >>"); 
-        agente.opSolicitaCompraAcciones();  
+        banco.opSolicitaCompraAcciones();  
     // hay que revisar
     }
 // solicitar venta de acciones 
 /**/    public void operacion15(){
         System.out.println ("<< Solicitar venta de acciones >>");
-        agente.opSolicitaVentaAcciones();
+        banco.opSolicitaVentaAcciones();
     // hay que revisar
     }
 // solicitar actualizacion de valores
@@ -230,7 +230,7 @@ public class Simulador implements Serializable{
 /**/    public void operacion17(){
         System.out.println ("<< Imprimir operaciones pendientes >>"); 
         
-        agente.opImprimirOperaciones();
+        banco.getAgente().opImprimirOperaciones();
                      
         // hay que revisar
 

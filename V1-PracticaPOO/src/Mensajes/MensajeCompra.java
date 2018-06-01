@@ -16,11 +16,10 @@ public class MensajeCompra extends Mensaje {
         this.nombreCliente = nC;
         this.nombreEmpresa = nE;
         this.cantidadInvertir = cantidad;
+        this.tipo=1;
     }
 
-    public double getCantidadInvertir() {
-        return cantidadInvertir;
-    }
+    
 
     public void setCantidadInvertir(double cantidadInvertir) {
         this.cantidadInvertir = cantidadInvertir;
@@ -47,7 +46,7 @@ public class MensajeCompra extends Mensaje {
 
     @Override
     public void imprimir(){
-        System.out.println("Compra:"+id+"|"+nombreCliente + "|"+nombreEmpresa + "|" +cantidadInvertir);
+        System.out.println(id+"|"+nombreCliente + "|"+nombreEmpresa + "|" +cantidadInvertir);
     }
 
 }

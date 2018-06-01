@@ -15,6 +15,11 @@ public class Mensaje {
     
     String nombreCliente;
     String nombreEmpresa;
+    int CantidadInvertir;
+
+    public int getCantidadInvertir() {
+        return CantidadInvertir;
+    }
     int id = (int) Math.floor(Math.random()*(0-1500+1)+1500); 
     int tipo;
 
