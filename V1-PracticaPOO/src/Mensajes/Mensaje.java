@@ -15,21 +15,8 @@ public class Mensaje {
     
     String nombreCliente;
     String nombreEmpresa;
-    int id;
-    static String texto;
+    int id = (int) Math.floor(Math.random()*(0-1500+1)+1500);; 
     
-    private ArrayList<Mensaje>listaPeticiones = new ArrayList<>();
-    
-    
-   
-
-    public ArrayList<Mensaje> getListaPeticiones() {
-        return listaPeticiones;
-    }
-
-    public void setListaPeticiones(ArrayList<Mensaje> listaPeticiones) {
-        this.listaPeticiones = listaPeticiones;
-    }
 
     public String getNombreCliente() {
         return nombreCliente;
@@ -46,15 +33,7 @@ public class Mensaje {
     public void setNombreEmpresa(String nombreEmpresa) {
         this.nombreEmpresa = nombreEmpresa;
     }
-/*
-    public double getCantidadInvertir() {
-        return cantidadInvertir;
-    }
 
-    public void setCantidadInvertir(double cantidadInvertir) {
-        this.cantidadInvertir = cantidadInvertir;
-    }
-*/
     public int getId() {
         return id;
     }
@@ -63,24 +42,7 @@ public class Mensaje {
         this.id = id;
     }
     
-    
-/*
-    public double getNumTitulos() {
-        return numTitulos;
-    }
 
-    public void setNumTitulos(double numTitulos) {
-        this.numTitulos = numTitulos;
-    }
-*/    
-
-    public static String getTexto() {
-        return texto;
-    }
-
-    public static void setTexto(String texto) {
-        Mensaje.texto = texto;
-    }
     
     public void imprimir(){
         System.out.println(id+"|"+nombreCliente + "|"+nombreEmpresa);

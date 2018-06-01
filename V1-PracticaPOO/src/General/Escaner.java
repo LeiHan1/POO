@@ -111,11 +111,11 @@ public class Escaner {
         return valor;
     }
     
-    public double pedirTitulosVender() {
-        double valor;
+    public int pedirTitulosVender() {
+        int valor;
         System.out.println("Introduce los titulos a vender: ");
         Scanner actual = new Scanner(System.in);
-        valor = actual.nextDouble();
+        valor = actual.nextInt();
         return valor;
     }
     

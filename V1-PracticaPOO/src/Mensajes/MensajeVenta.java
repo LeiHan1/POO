@@ -13,21 +13,19 @@ import Mensajes.Mensaje;
  * @author Han Lei
  */
 public class MensajeVenta extends Mensaje{
-    private double numTitulos;
+    private int numTitulos;
     
-    public MensajeVenta(String nC, String nE, double titulos) {
+    public MensajeVenta(String nC, String nE, int titulos) {
         this.nombreCliente = nC;
         this.nombreEmpresa = nE;
         this.numTitulos = titulos;
-        this.id = id + 1;
-        this.texto = (id + "|" + nE +"|"+ nC + "|" + numTitulos);
     }
 
     public double getNumTitulos() {
         return numTitulos;
     }
 
-    public void setNumTitulos(double numTitulos) {
+    public void setNumTitulos(int numTitulos) {
         this.numTitulos = numTitulos;
     }
 
@@ -60,10 +58,7 @@ public class MensajeVenta extends Mensaje{
     public void setId(int id) {
         this.id = id;
     }
-    
-    public static String getTexto() {
-        return texto;
-    }
+
     
 @Override
     public void imprimir(){

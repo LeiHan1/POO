@@ -69,7 +69,7 @@ public class AgenteDeInversiones extends Persona {
         
         String nombreE = es.pedirNomEmpresa();
         
-        double titulos = es.pedirTitulosVender();
+        int titulos = es.pedirTitulosVender();
         
     //almacenar en la lista    
     //hay que anadir la condicion de que si existe el cliente y tiene saldo
