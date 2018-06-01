@@ -15,8 +15,16 @@ public class Mensaje {
     
     String nombreCliente;
     String nombreEmpresa;
-    int id = (int) Math.floor(Math.random()*(0-1500+1)+1500);; 
-    
+    int id = (int) Math.floor(Math.random()*(0-1500+1)+1500); 
+    int tipo;
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
 
     public String getNombreCliente() {
         return nombreCliente;
