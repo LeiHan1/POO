@@ -13,22 +13,20 @@ import java.util.ArrayList;
  */
 public class Mensaje {
     
-    private String nombreCliente;
-    private String nombreEmpresa;
-    private int id;
+    String nombreCliente;
+    String nombreEmpresa;
+    int id;
+    
     private ArrayList<Mensaje>listaPeticiones = new ArrayList<>();
     
-    public void aniadirMensaje(Mensaje m){
-
-       listaPeticiones.add(m);
-    }
     
-    public void rescatarMensajeBanco(){
+    
+    /*public void rescatarMensajeBanco(){
         for (Mensaje mensaje:listaPeticiones){
             mensaje.cantidadInvertir;
         }
          
-    }
+    }*/
 
     public ArrayList<Mensaje> getListaPeticiones() {
         return listaPeticiones;
@@ -70,7 +68,6 @@ public class Mensaje {
         this.id = id;
     }
     
-    public void imprimir(){}
     
 /*
     public double getNumTitulos() {

@@ -22,6 +22,7 @@ public class MensajeCompra extends Mensaje {
         this.cantidadInvertir = cantidad;
         this.codigo = codigo +1;
         this.texto = (codigo + "|" + nC +"|"+ nE + "|" + cantidad);
+        
     }
 
     public double getCantidadInvertir() {

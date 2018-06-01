@@ -15,9 +15,16 @@ import java.util.Scanner;
  */
 public class AgenteDeInversiones extends Persona {
     
+    private final ArrayList<Mensaje>listaPeticiones = new ArrayList<>();
+    
     public AgenteDeInversiones (String n, String d){
         this.nombre = n;
         this.dni = d;
+    }
+    
+    public void aniadirMensaje(Mensaje m){
+
+       listaPeticiones.add(m);
     }
     
     //public String codificacionPeticion(Mensaje p){}
@@ -45,10 +52,12 @@ public class AgenteDeInversiones extends Persona {
 
         double cantidad = es.pedirCantidadAccion();
 
-    //almacenar en la lista    
+        
     //hay que anadir la condicion de que si existe el cliente y tiene saldo
         Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
         listaPeticiones.add(p);
+        System.out.println(MensajeCompra.getTexto());
+        System.out.println(listaPeticiones);
     }
     
     public void opSolicitaVentaAcciones(){ //15.solicitar venta de acciones
@@ -76,9 +85,12 @@ public class AgenteDeInversiones extends Persona {
     
     public void opImprimirOperaciones(){ //17.imprimir operaciones pendientes
         System.out.println ("Imprimir peticiones pendientes");
-        for (Mensaje p : listaPeticiones) {
-            p.imprimir();
+        for (int i=0;i<listaPeticiones.size();i++) {
+          System.out.println(listaPeticiones.toString());
         }
+        
+            
+        
     
     
     

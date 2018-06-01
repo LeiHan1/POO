@@ -230,8 +230,7 @@ public class Simulador implements Serializable{
 // imprimir opraciones pendeientes del agente
 /**/    public void operacion17(){
         System.out.println ("<< Imprimir operaciones pendientes >>"); 
-        agente.opSolicitaCompraAcciones();
-        agente.opSolicitaVentaAcciones();
+        
         agente.opImprimirOperaciones();
                      
         // hay que revisar
@@ -318,7 +317,7 @@ public class Simulador implements Serializable{
                 break;
             //------------------BROKER------------------
             case 17: // imprimir opraciones pendeientes del agente
-                
+                operacion17();
                 break;
             
             case 18: // ejecutar operaciones pendientes 

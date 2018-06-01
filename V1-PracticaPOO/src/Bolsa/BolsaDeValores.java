@@ -118,57 +118,8 @@ public class BolsaDeValores implements Serializable{
     }
     
     
-    public void guardarDatos(String ruta, BolsaDeValores b) throws IOException{
-        
-        ObjectOutputStream file = new ObjectOutputStream(new FileOutputStream (ruta));
-        try {          
-                file.writeObject(b);               
-        } catch (IOException ex) {            
-            System.out.println("Error en la escritura del archivo. Codigo de error:"+ex);
-        }
-        finally{            
-            file.close();            
-        }        
-    }
-    
-    public void cargarDatos(String ruta)throws IOException, ClassNotFoundException{
-        
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(ruta));        
-        try {
-            file.readObject();
-        }        
-        catch(IOException ex){            
-            System.out.println("Error en la lectura del archivo.");
-        }
-        catch(ClassNotFoundException e){          
-            System.out.println("Error en la lectura del fichero.");
-        }
-        finally{
-            file.close();
-        }
-    }
-/*    
-    public void cargarDatosBancos(String ruta)throws IOException{
-        
-        ObjectInputStream file = new ObjectInputStream(new FileInputStream(ruta));
-        Banco b;
-        try {
-            while(true){
-            b = (Banco)file.readObject();
-            listaBancos.add(b);
-            }
-        }        
-        catch(IOException ex){            
-            System.out.println("Error en la lectura del archivo.");
-        }
-        catch(ClassNotFoundException e){           
-            System.out.println("Error en la lectura del fichero.");
-        }
-        finally{
-            file.close();
-        }
-    }
-*/
+
+
    
     public int buscarEmpresa(String nombreEmpresa){
         int indice = 0;

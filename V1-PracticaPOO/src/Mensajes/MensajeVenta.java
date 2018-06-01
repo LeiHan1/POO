@@ -19,10 +19,10 @@ public class MensajeVenta extends Mensaje{
         this.nombreCliente = nC;
         this.nombreEmpresa = nE;
         this.numTitulos = titulos;
-        this.id = AgenteDeInversiones.getTamañoListaPeticiones();
+        //this.id = AgenteDeInversiones.getTamañoListaPeticiones();
     }
     
-    @Override
+    
     public void imprimir(){
         System.out.println ("Peticion de venta");
         System.out.println ("ID: "+id +"Cliente: "+nombreCliente +" Empresa: "+nombreEmpresa +" Titulos: "+numTitulos);
