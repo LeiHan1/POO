@@ -111,6 +111,14 @@ public class Escaner {
         return valor;
     }
     
+    public double pedirTitulosVender() {
+        double valor;
+        System.out.println("Introduce los titulos a vender: ");
+        Scanner actual = new Scanner(System.in);
+        valor = actual.nextDouble();
+        return valor;
+    }
+    
     public void siguiente() {
         System.out.println("- Operacion finalizada, pulse la tecla intro para volver al menu -");
         Scanner intro = new Scanner(System.in);

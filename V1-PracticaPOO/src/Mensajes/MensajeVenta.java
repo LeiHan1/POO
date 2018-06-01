@@ -13,18 +13,60 @@ import Mensajes.Mensaje;
  * @author Han Lei
  */
 public class MensajeVenta extends Mensaje{
-    private int numTitulos;
+    private double numTitulos;
     
-    public MensajeVenta(String nC, String nE, int titulos) {
+    public MensajeVenta(String nC, String nE, double titulos) {
         this.nombreCliente = nC;
         this.nombreEmpresa = nE;
         this.numTitulos = titulos;
-        //this.id = AgenteDeInversiones.getTamañoListaPeticiones();
+        this.id = id + 1;
+        this.texto = (id + "|" + nE +"|"+ nC + "|" + numTitulos);
+    }
+
+    public double getNumTitulos() {
+        return numTitulos;
+    }
+
+    public void setNumTitulos(double numTitulos) {
+        this.numTitulos = numTitulos;
+    }
+
+    @Override
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    @Override
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    @Override
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    @Override
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
     
+    public static String getTexto() {
+        return texto;
+    }
     
+@Override
     public void imprimir(){
-        System.out.println ("Peticion de venta");
-        System.out.println ("ID: "+id +"Cliente: "+nombreCliente +" Empresa: "+nombreEmpresa +" Titulos: "+numTitulos);
+        System.out.println(id+"|"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
     }
 }

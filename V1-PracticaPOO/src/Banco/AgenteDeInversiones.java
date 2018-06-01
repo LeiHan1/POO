@@ -56,24 +56,27 @@ public class AgenteDeInversiones extends Persona {
     //hay que anadir la condicion de que si existe el cliente y tiene saldo
         Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
         listaPeticiones.add(p);
-        System.out.println(MensajeCompra.getTexto());
-        System.out.println(listaPeticiones);
+        //System.out.println(MensajeCompra.getTexto());
+        //System.out.println(listaPeticiones);
+        p.imprimir();
     }
     
     public void opSolicitaVentaAcciones(){ //15.solicitar venta de acciones
     //solicitar datos
         System.out.println ("Solicitar venta de acciones");
-        System.out.print ("Introduce el nombre del cliente: ");
-        Scanner scanner = new Scanner(System.in);
-        String nombreC = scanner.nextLine();
-        System.out.print ("Introduce el nombre de la empresa: ");
-        String nombreE = scanner.nextLine();
-        System.out.print ("Introduce titulos a vender: ");
-        int titulos = scanner.nextInt();
+        Escaner es = new Escaner();
+        String nombreC = es.pedirNombre();
+        
+        String nombreE = es.pedirNomEmpresa();
+        
+        double titulos = es.pedirTitulosVender();
+        
     //almacenar en la lista    
     //hay que anadir la condicion de que si existe el cliente y tiene saldo
         Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
         listaPeticiones.add(p);
+        //System.out.println();
+        p.imprimir();
     
     }
     
@@ -86,7 +89,7 @@ public class AgenteDeInversiones extends Persona {
     public void opImprimirOperaciones(){ //17.imprimir operaciones pendientes
         System.out.println ("Imprimir peticiones pendientes");
         for (int i=0;i<listaPeticiones.size();i++) {
-          System.out.println(listaPeticiones.toString());
+          listaPeticiones.get(i).imprimir();
         }
         
             

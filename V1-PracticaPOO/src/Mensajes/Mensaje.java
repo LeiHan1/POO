@@ -16,17 +16,12 @@ public class Mensaje {
     String nombreCliente;
     String nombreEmpresa;
     int id;
+    static String texto;
     
     private ArrayList<Mensaje>listaPeticiones = new ArrayList<>();
     
     
-    
-    /*public void rescatarMensajeBanco(){
-        for (Mensaje mensaje:listaPeticiones){
-            mensaje.cantidadInvertir;
-        }
-         
-    }*/
+   
 
     public ArrayList<Mensaje> getListaPeticiones() {
         return listaPeticiones;
@@ -78,6 +73,18 @@ public class Mensaje {
         this.numTitulos = numTitulos;
     }
 */    
+
+    public static String getTexto() {
+        return texto;
+    }
+
+    public static void setTexto(String texto) {
+        Mensaje.texto = texto;
+    }
+    
+    public void imprimir(){
+        System.out.println(id+"|"+nombreCliente + "|"+nombreEmpresa);
+    }
     
     
 }

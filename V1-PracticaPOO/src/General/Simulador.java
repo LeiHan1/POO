@@ -216,7 +216,6 @@ public class Simulador implements Serializable{
 // solicitar venta de acciones 
 /**/    public void operacion15(){
         System.out.println ("<< Solicitar venta de acciones >>");
-        agente.opSolicitaCompraAcciones();
         agente.opSolicitaVentaAcciones();
     // hay que revisar
     }
@@ -309,11 +308,11 @@ public class Simulador implements Serializable{
                 break;
             
             case 15: // solicitar venta de acciones 
-
+                operacion15();
                 break;
             
             case 16: // solicitar actualizacion de valores
-               
+                operacion16();
                 break;
             //------------------BROKER------------------
             case 17: // imprimir opraciones pendeientes del agente
@@ -321,7 +320,7 @@ public class Simulador implements Serializable{
                 break;
             
             case 18: // ejecutar operaciones pendientes 
-
+                operacion18();
                 break;
             
             default: System.out.println ("No has elegido una opcion correcta"); break;
