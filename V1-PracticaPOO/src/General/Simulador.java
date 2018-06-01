@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -222,6 +223,9 @@ public class Simulador implements Serializable{
 // solicitar actualizacion de valores
 /**/    public void operacion16(){
         System.out.println ("<< Solicitar actualizacion de valores >>"); 
+        Scanner sc = new Scanner(System.in);
+            String palabra = sc.nextLine();
+        agente.intentaOperacion(palabra);
     
     // ! FALTA POR IMPLEMENTAR !
         
