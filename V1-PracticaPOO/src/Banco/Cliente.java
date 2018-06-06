@@ -27,7 +27,7 @@ public class Cliente extends Persona implements Serializable{
         this.saldo = saldo;
         this.premium = false;
         cartera = new ArrayList <> ();
-    }  
+    }
     
     public double getSaldo(){
         

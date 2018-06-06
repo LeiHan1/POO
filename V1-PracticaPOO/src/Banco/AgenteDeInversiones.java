@@ -57,12 +57,12 @@ public class AgenteDeInversiones extends Persona {
          String empresa = null;
          String cantInver = null;
          int n = 0;
+         Cliente p;
          
          while (m.charAt(n) < m.length()){
              if(m.charAt(n) == c){
                  n++;
-             }
-             if(n < 5){
+             }else if(n < 5){
                  s = m.charAt(n);
                  cliente = cliente + s;
              }else if (n < 9){
@@ -73,9 +73,28 @@ public class AgenteDeInversiones extends Persona {
                  cantInver = cantInver + s;
                  int cantidad = Integer.parseInt(cantInver);
              }
+             n++;
+         }
+         double cantidad = Double.parseDouble(cantInver);
+         if(m.charAt(0) == 1){
+             for(Cliente cli:Banco.getInversores()){
+                 if (cli.nombre == cliente){
+                     
+                 }
+             }
+             System.out.println("");
+         }else if(m.charAt(0) == 2){
+             for(Cliente cli:Banco.getInversores()){
+                 if (cli.nombre == cliente){
+                     
+                 }
+             }
+             System.out.println("");
+             
+         }else if(m.charAt(0) == 3){
+             System.out.println("");
              
          }
-         int cantidad = Integer.parseInt(cantInver);
          for (int n = 0; n <m.length (); n++) { 
              
          if (m.charAt(n) == c) {

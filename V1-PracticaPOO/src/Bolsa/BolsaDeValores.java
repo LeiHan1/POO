@@ -179,34 +179,6 @@ public class BolsaDeValores implements Serializable{
             }    
     }
     
-     public void realizarOpPendientes(ArrayList<Mensaje> lista, ArrayList<Cliente> cliente){
-        
-        for(Mensaje m:lista){
-            if (m.getTipo() == 1){
-                for(Cliente c:cliente){
-                    if (m.getNombreCliente() == c.getNombre()){
-                        for(Empresa e:listaEmpresas){
-                            if(m.getNombreEmpresa() == e.getNombre()){
-                                
-                            }
-                        }
-                    }
-                }
-            }
-            else if (m.getTipo() == 2){
-                for(Cliente c:cliente){
-                    if (m.getNombreCliente() == c.getNombre()){
-                        
-                    }
-                }
-            }
-            else if(m.getTipo() == 3){
-                
-            }
-        }
-        
-    }
-    
     
     
     

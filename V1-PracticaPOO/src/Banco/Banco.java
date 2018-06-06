@@ -26,7 +26,7 @@ import Mensajes.MensajeVenta;
 public class Banco implements Serializable{
     
     private String nombreBanco;
-    private final ArrayList <ClientePremium> clientes;
+    private static ArrayList <ClientePremium> clientes;
     private ArrayList <String> Operaciones;
     private AgenteDeInversiones agente;
     //private int indice = 0; // indice del cliente en el array
@@ -48,7 +48,7 @@ public class Banco implements Serializable{
         this.nombreBanco = nombre;
     }
 
-    public ArrayList<ClientePremium> getInversores() {
+    public static ArrayList<ClientePremium> getInversores() {
         return clientes;
     }
     
