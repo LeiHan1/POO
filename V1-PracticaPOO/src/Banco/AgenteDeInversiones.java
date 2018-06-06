@@ -47,9 +47,9 @@ public class AgenteDeInversiones extends Persona {
 */
   
      public void intentaOperacion(String m){ //16.solicitar actualizacion de acciones
-         int ini=0;
-         int fin=0;
-         int cont=0;
+         String uno = "1";
+         String dos="2";
+         String tres="3";
          String barra= "|";
          char c = barra.charAt(0);
          char s;
@@ -76,26 +76,26 @@ public class AgenteDeInversiones extends Persona {
              n++;
          }
          double cantidad = Double.parseDouble(cantInver);
-         if(m.charAt(0) == 1){
+         if(uno.equals(m.charAt(0))){
              for(Cliente cli:Banco.getInversores()){
-                 if (cli.nombre == cliente){
+                 if (cli.nombre.equals(cliente)){
                      
                  }
              }
              System.out.println("");
-         }else if(m.charAt(0) == 2){
+         }else if(dos.equals(m.charAt(0))){
              for(Cliente cli:Banco.getInversores()){
-                 if (cli.nombre == cliente){
+                 if (cli.nombre.equals(cliente)){
                      
                  }
              }
              System.out.println("");
              
-         }else if(m.charAt(0) == 3){
+         }else if(tres.equals(m.charAt(0))){
              System.out.println("");
              
          }
-         for (int n = 0; n <m.length (); n++) { 
+        /* for (int n = 0; n <m.length (); n++) { 
              
          if (m.charAt(n) == c) {
             cont++;
@@ -127,7 +127,7 @@ public class AgenteDeInversiones extends Persona {
          }
              
          
-     }
+     }*/
      
      
      
