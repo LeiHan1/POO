@@ -52,11 +52,32 @@ public class AgenteDeInversiones extends Persona {
          int cont=0;
          String barra= "|";
          char c = barra.charAt(0);
-         String cliente;
-         String empresa;
-         double cantInver;
+         char s;
+         String cliente = null;
+         String empresa = null;
+         String cantInver = null;
+         int n = 0;
          
-     for (int n = 0; n <m.length (); n++) { 
+         while (m.charAt(n) < m.length()){
+             if(m.charAt(n) == c){
+                 n++;
+             }
+             if(n < 5){
+                 s = m.charAt(n);
+                 cliente = cliente + s;
+             }else if (n < 9){
+                 s = m.charAt(n);
+                 empresa = empresa + s;
+             }else{
+                 s = m.charAt(n);
+                 cantInver = cantInver + s;
+                 int cantidad = Integer.parseInt(cantInver);
+             }
+             
+         }
+         int cantidad = Integer.parseInt(cantInver);
+         for (int n = 0; n <m.length (); n++) { 
+             
          if (m.charAt(n) == c) {
             cont++;
             switch (cont) {
