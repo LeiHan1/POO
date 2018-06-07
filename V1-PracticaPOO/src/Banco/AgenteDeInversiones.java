@@ -79,6 +79,7 @@ public class AgenteDeInversiones extends Persona {
                  n++;
              }
          }
+        int num = 0;
         for(Mensaje me:listaPeticiones){
             
             if (me.getNombreCliente().equals(cliente) && (me.getId() == 1)){
@@ -90,18 +91,19 @@ public class AgenteDeInversiones extends Persona {
                      while (m.charAt(n) < m.length()){
                      s = m.charAt(n);
                      numTitulos = numTitulos + s;
-                     int num = Integer.parseInt(numTitulos);
+                     num = Integer.parseInt(numTitulos);
                      }
-                     }
-        }
+            } // end else
+        } // end for
          BolsaDeValores e = null;
          Banco cl = null;
          double cantidad = Double.parseDouble(cantInver);
          int idd = Integer.parseInt(id);
          
+         PaqueteDeAcciones p = new PaqueteDeAcciones();
          for(Empresa em:e.getListaEmpresas()){
             if(em.getNombre().equals(empresa)){
-                PaqueteDeAcciones p = new PaqueteDeAcciones(em.getNombre(), (int) (cantidad/em.getValorActual()),em.getValorActual());
+                p = new PaqueteDeAcciones(em.getNombre(), (int) (cantidad/em.getValorActual()),em.getValorActual());
                 }
             }
          for(Cliente cli:cl.getInversores()){
@@ -115,17 +117,19 @@ public class AgenteDeInversiones extends Persona {
              }
              System.out.println("");
          }
+         double val = 0; 
          if(idd == 2){
              for(Empresa em:e.getListaEmpresas()){
                 if(em.getNombre().equals(empresa)){
-                   double val = em.getValorActual();
+                   val = em.getValorActual();
                 }
             }
-         for(Cliente clii:cl.getInversores()){
+             
+         for(Cliente cli:cl.getInversores()){
                  
-                 if (clii.nombre.equals(cliente)){
+                 if (cli.nombre.equals(cliente)){
                      
-                     clii.setSaldo(clii.getSaldo() - (num * val));
+                     cli.setSaldo(cli.getSaldo() - (num * val));
                      cli.getCartera().add(p);
                      
                  }
@@ -136,6 +140,8 @@ public class AgenteDeInversiones extends Persona {
                  }
              
              System.out.println("");
+             String sub = m.substring(1,4);
+        System.out.println(sub);
              
          }
         /* for (int n = 0; n <m.length (); n++) { 
@@ -174,11 +180,10 @@ public class AgenteDeInversiones extends Persona {
      
      
      
-     String sub = m.substring(1,4);
-     System.out.println(sub);
+     
     
-    }
     
+
     
     public void opImprimirOperaciones(){ //17.imprimir operaciones pendientes
         System.out.println ("Imprimir peticiones pendientes");
