@@ -27,7 +27,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BolsaDeValores implements Serializable{
     
     private String nombreBolsa;
-    private ArrayList<Empresa> listaEmpresas;
+    private static ArrayList<Empresa> listaEmpresas;
     private boolean existeEmpresa = false;
     //private ArrayList<Banco> listaBancos;
     
@@ -59,7 +59,7 @@ public class BolsaDeValores implements Serializable{
         this.nombreBolsa = nombreBolsa;
     }
 
-    public ArrayList<Empresa> getListaEmpresas() {
+    public static ArrayList<Empresa> getListaEmpresas() {
         return listaEmpresas;
     }
 

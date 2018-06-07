@@ -6,6 +6,8 @@
 package Banco;
 import General.*;
 import Mensajes.*;
+import Bolsa.BolsaDeValores;
+import Bolsa.Empresa;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,51 +49,92 @@ public class AgenteDeInversiones extends Persona {
 */
   
      public void intentaOperacion(String m){ //16.solicitar actualizacion de acciones
-         String uno = "1";
-         String dos="2";
-         String tres="3";
          String barra= "|";
          char c = barra.charAt(0);
          char s;
+         String id = null;
          String cliente = null;
          String empresa = null;
          String cantInver = null;
          int n = 0;
-         Cliente p;
-         
+         String numTitulos = null;
          while (m.charAt(n) < m.length()){
+             s = m.charAt(n);
+             id = id + s;
              if(m.charAt(n) == c){
                  n++;
-             }else if(n < 5){
-                 s = m.charAt(n);
-                 cliente = cliente + s;
-             }else if (n < 9){
-                 s = m.charAt(n);
-                 empresa = empresa + s;
-             }else{
-                 s = m.charAt(n);
-                 cantInver = cantInver + s;
-                 int cantidad = Integer.parseInt(cantInver);
              }
-             n++;
          }
+        while (m.charAt(n) < m.length()){
+              s = m.charAt(n);
+             cliente = cliente + s;
+             if(m.charAt(n) == c){
+                 n++;
+             }   
+        }
+        while (m.charAt(n) < m.length()){
+             s = m.charAt(n);
+             empresa = empresa + s;
+             if(m.charAt(n) == c){
+                 n++;
+             }
+         }
+        for(Mensaje me:listaPeticiones){
+            
+            if (me.getNombreCliente().equals(cliente) && (me.getId() == 1)){
+                while (m.charAt(n) < m.length()){
+                     s = m.charAt(n);
+                     cantInver = cantInver + s;
+             }
+            }else if (me.getNombreCliente().equals(cliente) && (me.getId() == 2)){
+                     while (m.charAt(n) < m.length()){
+                     s = m.charAt(n);
+                     numTitulos = numTitulos + s;
+                     int num = Integer.parseInt(numTitulos);
+                     }
+                     }
+        }
+         BolsaDeValores e = null;
+         Banco cl = null;
          double cantidad = Double.parseDouble(cantInver);
-         if(uno.equals(m.charAt(0))){
-             for(Cliente cli:Banco.getInversores()){
+         int idd = Integer.parseInt(id);
+         
+         for(Empresa em:e.getListaEmpresas()){
+            if(em.getNombre().equals(empresa)){
+                PaqueteDeAcciones p = new PaqueteDeAcciones(em.getNombre(), (int) (cantidad/em.getValorActual()),em.getValorActual());
+                }
+            }
+         for(Cliente cli:cl.getInversores()){
+            if(idd == 1){
+                 
                  if (cli.nombre.equals(cliente)){
+                     cli.setSaldo(cli.getSaldo() - cantidad);
+                     cli.getCartera().add(p);
                      
                  }
              }
              System.out.println("");
-         }else if(dos.equals(m.charAt(0))){
-             for(Cliente cli:Banco.getInversores()){
-                 if (cli.nombre.equals(cliente)){
+         }
+         if(idd == 2){
+             for(Empresa em:e.getListaEmpresas()){
+                if(em.getNombre().equals(empresa)){
+                   double val = em.getValorActual();
+                }
+            }
+         for(Cliente clii:cl.getInversores()){
+                 
+                 if (clii.nombre.equals(cliente)){
+                     
+                     clii.setSaldo(clii.getSaldo() - (num * val));
+                     cli.getCartera().add(p);
                      
                  }
+                  
+                 
              }
-             System.out.println("");
+                     
+                 }
              
-         }else if(tres.equals(m.charAt(0))){
              System.out.println("");
              
          }
