@@ -129,23 +129,22 @@ public class Banco implements Serializable{
      
     }
     
-public void opSolicitaCompraAcciones(){ //14.solicitar compra de acciones
+    public void opSolicitaCompraAcciones(){ //14.solicitar compra de acciones
     //solicitar datos
         Escaner es = new Escaner();
         System.out.println ("Solicitar compra de acciones");
         String nombreCliente = es.pedirNombre();
-        
-        
- 
+
         String nombreEmpresa = es.pedirNomEmpresa();
 
         double cantidad = es.pedirCantidadAccion();
-
-        
     
         Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
+        /*
         agente.getListaPeticiones().add(p);
-   
+        agente.addSetMensaje(p);
+        */
+        agente.addMapMensaje(p, "Compra");
         p.imprimir();
     }
     
@@ -161,8 +160,9 @@ public void opSolicitaCompraAcciones(){ //14.solicitar compra de acciones
         
     
         Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
-        agente.getListaPeticiones().add(p);
+        //agente.getListaPeticiones().add(p);
         //System.out.println();
+        agente.addMapMensaje(p, "Venta");
         p.imprimir();
     
     }

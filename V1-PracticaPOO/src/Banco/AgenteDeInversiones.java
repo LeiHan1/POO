@@ -9,7 +9,11 @@ import Mensajes.*;
 import Bolsa.BolsaDeValores;
 import Bolsa.Empresa;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  *
@@ -17,57 +21,81 @@ import java.util.Scanner;
  */
 public class AgenteDeInversiones extends Persona {
     
-    private final ArrayList<Mensaje>listaPeticiones = new ArrayList<>();
+    private final HashMap<Mensaje, String> mensajes = new HashMap<>();
     
     public AgenteDeInversiones (String n, String d){
         this.nombre = n;
         this.dni = d;
     }
+
     
-    public void aniadirMensaje(Mensaje m){
-       listaPeticiones.add(m);
-    }
-
-    public ArrayList<Mensaje> getListaPeticiones() {
-        return listaPeticiones;
-    }
-
-  
-     public void intentaOperacion(String m){ //18. ejecutar operacion
+    public void addMapMensaje (Mensaje m, String s){
+        mensajes.put(m, s);
+    };
+    
+     public void intentaOperacion(Mensaje k, String v){ //18. ejecutar operacion
         String barra= "|";
-        char bar = barra.charAt(0); //transformar la barra de string a char
-        char c; // sacar del string caracter por carater para ver donde estan las barras y separar los campos
-        String cantInver = null;
-        int ini = 0;
-        int n = 0;
-        String numTitulos = null;
-        while (n < m.length() &&  m.charAt(n)!=bar){ // sacar el campo id del string
-            n++;
-        }
-        String id = m.substring(ini,n);
-        System.out.println (id);        
-        n++;
-        ini = n;
- 
-        while (n < m.length() &&  m.charAt(n)!=bar){ // sacar el campo cliente del string
-            n++;
-        }
-        
-        String cliente = m.substring(ini,n);
-        System.out.println (cliente);
-        n++;
-        ini = n;
-        while (n < m.length() &&  m.charAt(n)!=bar){ // sacar el campo empresa del string
-            n++;
-        }
-        String empresa = m.substring(ini,n);
-        System.out.println (empresa);
-        
-        String precio = m.substring(n+1, m.length());
-        double d = Double.parseDouble(precio);
-        System.out.println (d);
-        
-        
+                String m = k.toString();
+                char bar = barra.charAt(0); //transformar la barra de string a char
+                int ini = 0;
+                int count = 0;
+                int id = 0;
+                String cliente = null;
+                String empresa = null;
+                for (int n = 0; n < m.length (); n++) { 
+             
+                    if (m.charAt(n) == bar) {
+                        count++;
+                        switch (count) {
+                            case 1: // campo del id
+                                String idAux = m.substring(ini,n);
+                                ini = n;
+                                id = Integer.parseInt(idAux);
+                                //System.out.println("El id es " + id);
+                            break;
+                
+                            case 2: // campo del cliente
+                                cliente = m.substring(ini+1,n);                    
+                                ini = n;
+                                //System.out.println("El Cliente es " +cliente);
+                                break;
+                
+                            case 3: // campo de la empresa
+                                empresa = m.substring(ini+1,n);
+                                ini = n;
+                                //System.out.println("La Empresa es " +empresa);
+                                break;
+                
+                            default: break;   
+                        } // end switch
+                    } // end if            
+                } // end for  
+                String numAux = m.substring(ini+1,m.length());
+                
+                switch (v){
+                    case "Compra": 
+                        double cantidad = Double.parseDouble(numAux);
+                        
+/* hay que añadir una condicion de que si cantidad > precio de la accion se crea el mensaje
+    boolean b = (cantidad > accion)? true : false;                    
+    Mensaje resCompra = new MensajeRespuestaCompra(cliente, empresa, cantidad, b);
+    
+*/
+                        Mensaje resCompra = new MensajeRespuestaCompra(cliente, empresa, cantidad, true, 3555);
+                        resCompra.setId(id);
+                        //System.out.println ("El precio es " + cantidad);
+                        System.out.println ("Id: " + resCompra.getId());
+                        System.out.println ("Cliente: " + resCompra.getNombreCliente());
+                        System.out.println ("Empresa: " + resCompra.getNombreEmpresa());
+                        System.out.println (resCompra.toString());
+                        
+                        
+                        break;
+                        
+                    default: break;
+                
+                
+                }
         
         /*
         int num = 0;
@@ -130,65 +158,34 @@ public class AgenteDeInversiones extends Persona {
                      
                  }
              
-             System.out.println("");
-             String sub = m.substring(1,4);
-        System.out.println(sub);
+          
         */     
     
      } // END INTENTA OPERACION
     
      
-     
-     
-        /* 
-        for (int n = 0; n <m.length (); n++) { 
-             
-         if (m.charAt(n) == bar) {
-            cont++;
-            switch (cont) {
-                case 1:
-                    ini=n;
-                    break;
-                
-                case 2:
-                    fin=n;
-                    cliente = m.substring(ini+1,fin);
-                    ini=n;
-                    System.out.println("El Cliente es " +cliente);
-                    break;
-                
-                case 3:
-                    fin=n;
-                    empresa = m.substring(ini+1,fin);
-                    ini=n;
-                    System.out.println("La Empresa es " +empresa);
-                    break;
-                
-                default: System.out.println ("No has elegido una opcion correcta"); 
-                    break;   
-             
-            
-            }
-            
-         }
-             
-         
-     }*/
-     
-     
-     
-     
-    
-    
 
-    
-    public void opImprimirOperaciones(){ //17.imprimir operaciones pendientes
-        System.out.println ("Imprimir peticiones pendientes");
-        for (int i=0;i<listaPeticiones.size();i++) {
-          listaPeticiones.get(i).imprimir();
+     public void opImprimirOperaciones(){ //17.imprimir operaciones pendientes
+        System.out.println ("Imprimir peticiones pendientes:");
+            mensajes.forEach((k,v) -> System.out.println("Key: " + k.toString() + ";    Value: " + v));
         }
+    
+     
+     public void vaciarLista(){ //17.imprimir operaciones pendientes
+        System.out.println ("Ejecutando la lista de peticiones");
+        mensajes.forEach((k,v) ->
+           {
+               intentaOperacion(k,v); 
+               
+               
+        }); //end for each
+        
+    
+    
+    
     }
 
-    
-    
+
+
 }
+     

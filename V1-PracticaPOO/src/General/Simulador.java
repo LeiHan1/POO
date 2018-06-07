@@ -7,6 +7,7 @@ package General;
 
 import Banco.*;
 import Bolsa.*;
+import Mensajes.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,7 +27,7 @@ public class Simulador implements Serializable{
     
     public Banco banco;
     public ArrayList <ClientePremium> listaClientes;
-    public AgenteDeInversiones agente;
+    //public AgenteDeInversiones agente;
   //  public GestorDeInversiones gestor;
     public BolsaDeValores bolsa;
     public int num;
@@ -38,7 +39,7 @@ public class Simulador implements Serializable{
 // --- constructor --- //   
     public Simulador(){
         
-        agente = new AgenteDeInversiones("Ana", "456");
+        AgenteDeInversiones agente = new AgenteDeInversiones("Ana", "456");
         banco = new Banco("BancoA", "Carlos", "2222");
         GestorDeInversiones Bob = new GestorDeInversiones("Bob", "S3333");
         bolsa = new BolsaDeValores("bolsa1");
@@ -54,6 +55,9 @@ public class Simulador implements Serializable{
         bolsa.aniadirEmpresa(e1);
         bolsa.aniadirEmpresa(e2);
         bolsa.opActualizacionDeValores();
+        
+        MensajeCompra comprar = new MensajeCompra("Lei", "EmpresaA", 1000);
+        banco.getAgente().addMapMensaje(comprar, "Compra");
         
     }
 
@@ -233,10 +237,13 @@ public class Simulador implements Serializable{
 //18. ejecutar operaciones pendientes 
 /**/    public void operacion18(){
         System.out.println ("<< Ejecutar operaciones pendientes >>");
+        /*
         Scanner sc = new Scanner(System.in);
         String palabra = sc.nextLine();
         agente.intentaOperacion(palabra);
-        // ! FALTA POR IMPLEMENTAR !
+        */
+        banco.getAgente().vaciarLista();
+// ! FALTA POR IMPLEMENTAR !
     }
 
     

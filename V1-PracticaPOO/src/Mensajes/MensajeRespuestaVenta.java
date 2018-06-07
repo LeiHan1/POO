@@ -21,4 +21,9 @@ public class MensajeRespuestaVenta extends MensajeVenta{
 //        System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
     }
 
+     @Override
+    public String toString(){
+    //    return (id+"|"+nombreCliente + "|"+nombreEmpresa+ "|" +cantidadInvertir);
+    return null;
+    }
 }

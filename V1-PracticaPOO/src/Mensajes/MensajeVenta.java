@@ -19,7 +19,6 @@ public class MensajeVenta extends Mensaje{
         this.nombreCliente = nC;
         this.nombreEmpresa = nE;
         this.numTitulos = titulos;
-        this.tipo =2;
     }
 
     public double getNumTitulos() {
@@ -64,6 +63,13 @@ public class MensajeVenta extends Mensaje{
 @Override
     public void imprimir(){
         
-        System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
+        System.out.println( id+"|"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
     }
+    
+    
+    @Override
+    public String toString(){
+        return (id+"|"+nombreCliente + "|"+nombreEmpresa+ "|"+numTitulos);
+    }
+    
 }

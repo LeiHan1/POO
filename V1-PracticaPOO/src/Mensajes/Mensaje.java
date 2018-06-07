@@ -15,21 +15,8 @@ public class Mensaje {
     
     String nombreCliente;
     String nombreEmpresa;
-    int CantidadInvertir;
 
-    public int getCantidadInvertir() {
-        return CantidadInvertir;
-    }
     int id = (int) Math.floor(Math.random()*(0-1500+1)+1500); 
-    int tipo;
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
 
     public String getNombreCliente() {
         return nombreCliente;
@@ -59,6 +46,12 @@ public class Mensaje {
     
     public void imprimir(){
         System.out.println(id+"|"+nombreCliente + "|"+nombreEmpresa);
+    }
+    
+    
+    @Override
+    public String toString(){
+        return (id+"|"+nombreCliente + "|"+nombreEmpresa);
     }
     
     

@@ -10,13 +10,12 @@ package Mensajes;
  */
 public class MensajeCompra extends Mensaje {
     
-    private double cantidadInvertir;
+    double cantidadInvertir;
      
     public MensajeCompra(String nC, String nE, double cantidad) {
         this.nombreCliente = nC;
         this.nombreEmpresa = nE;
         this.cantidadInvertir = cantidad;
-        this.tipo=1;
     }
 
     
@@ -25,6 +24,7 @@ public class MensajeCompra extends Mensaje {
         this.cantidadInvertir = cantidadInvertir;
     }
 
+    @Override
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }
@@ -49,4 +49,10 @@ public class MensajeCompra extends Mensaje {
         System.out.println(id+"|"+nombreCliente + "|"+nombreEmpresa + "|" +cantidadInvertir);
     }
 
+    @Override
+    public String toString(){
+        return (id+"|"+nombreCliente + "|"+nombreEmpresa+ "|" +cantidadInvertir);
+    }
+    
+    
 }
