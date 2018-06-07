@@ -34,48 +34,54 @@ public class AgenteDeInversiones extends Persona {
 
   
      public void intentaOperacion(String m){ //18. ejecutar operacion
-         String barra= "|";
-         char c = barra.charAt(0);
-         char s;
-         String id = null;
-         String cliente = null;
-         String empresa = null;
-         String cantInver = null;
-         int n = 0;
-         String numTitulos = null;
-         while (m.charAt(n) < m.length()){
-             s = m.charAt(n);
-             id = id + s;
-             if(m.charAt(n) == c){
-                 n++;
-             }
-         }
-        while (m.charAt(n) < m.length()){
-              s = m.charAt(n);
-             cliente = cliente + s;
-             if(m.charAt(n) == c){
-                 n++;
-             }   
+        String barra= "|";
+        char bar = barra.charAt(0); //transformar la barra de string a char
+        char c; // sacar del string caracter por carater para ver donde estan las barras y separar los campos
+        String cantInver = null;
+        int ini = 0;
+        int n = 0;
+        String numTitulos = null;
+        while (n < m.length() &&  m.charAt(n)!=bar){ // sacar el campo id del string
+            n++;
         }
-        while (m.charAt(n) < m.length()){
-             s = m.charAt(n);
-             empresa = empresa + s;
-             if(m.charAt(n) == c){
-                 n++;
-             }
-         }
+        String id = m.substring(ini,n);
+        System.out.println (id);        
+        n++;
+        ini = n;
+ 
+        while (n < m.length() &&  m.charAt(n)!=bar){ // sacar el campo cliente del string
+            n++;
+        }
+        
+        String cliente = m.substring(ini,n);
+        System.out.println (cliente);
+        n++;
+        ini = n;
+        while (n < m.length() &&  m.charAt(n)!=bar){ // sacar el campo empresa del string
+            n++;
+        }
+        String empresa = m.substring(ini,n);
+        System.out.println (empresa);
+        
+        String precio = m.substring(n+1, m.length());
+        double d = Double.parseDouble(precio);
+        System.out.println (d);
+        
+        
+        
+        /*
         int num = 0;
-        for(Mensaje me:listaPeticiones){
+        for(Mensaje me:listaPeticiones){ // sacar el campo de cantidad invertida/titulos a vender
             
             if (me.getNombreCliente().equals(cliente) && (me.getId() == 1)){
                 while (m.charAt(n) < m.length()){
-                     s = m.charAt(n);
-                     cantInver = cantInver + s;
+                     c = m.charAt(n);
+                     cantInver = cantInver + c;
              }
             }else if (me.getNombreCliente().equals(cliente) && (me.getId() == 2)){
                      while (m.charAt(n) < m.length()){
-                     s = m.charAt(n);
-                     numTitulos = numTitulos + s;
+                     c = m.charAt(n);
+                     numTitulos = numTitulos + c;
                      num = Integer.parseInt(numTitulos);
                      }
             } // end else
@@ -127,11 +133,17 @@ public class AgenteDeInversiones extends Persona {
              System.out.println("");
              String sub = m.substring(1,4);
         System.out.println(sub);
+        */     
+    
+     } // END INTENTA OPERACION
+    
+     
+     
+     
+        /* 
+        for (int n = 0; n <m.length (); n++) { 
              
-         }
-        /* for (int n = 0; n <m.length (); n++) { 
-             
-         if (m.charAt(n) == c) {
+         if (m.charAt(n) == bar) {
             cont++;
             switch (cont) {
                 case 1:
