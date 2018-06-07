@@ -15,4 +15,10 @@ public class MensajeRespuestaVenta extends MensajeVenta{
         super(nC, nE, titulos);
     }
     
+    @Override
+    public void imprimir(){
+        
+//        System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
+    }
+
 }

@@ -11,4 +11,11 @@ package Mensajes;
  */
 public class MensajeRespuestaActualizacion extends MensajeActualizacion{
     
+    
+    @Override
+    public void imprimir(){
+        
+ //       System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
+    }
+
 }

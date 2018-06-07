@@ -209,39 +209,33 @@ public class Simulador implements Serializable{
     }
     
  //14. solicitar compra de acciones
-/**/public void operacion14(){
+    public void operacion14(){
         System.out.println ("<< Solicitar compra de acciones >>"); 
         banco.opSolicitaCompraAcciones();  
-    // hay que revisar
     }
-// solicitar venta de acciones 
-/**/    public void operacion15(){
+//15. solicitar venta de acciones 
+    public void operacion15(){
         System.out.println ("<< Solicitar venta de acciones >>");
         banco.opSolicitaVentaAcciones();
-    // hay que revisar
     }
-// solicitar actualizacion de valores
+//16. solicitar actualizacion de valores
 /**/    public void operacion16(){
         System.out.println ("<< Solicitar actualizacion de valores >>"); 
-        Scanner sc = new Scanner(System.in);
-            String palabra = sc.nextLine();
-        agente.intentaOperacion(palabra);
-    
+       
     // ! FALTA POR IMPLEMENTAR !
         
     }
-// imprimir opraciones pendeientes del agente
-/**/    public void operacion17(){
+//17. imprimir opraciones pendeientes del agente
+    public void operacion17(){
         System.out.println ("<< Imprimir operaciones pendientes >>"); 
-        
         banco.getAgente().opImprimirOperaciones();
-                     
-        // hay que revisar
-
     }
-// ejecutar operaciones pendientes 
+//18. ejecutar operaciones pendientes 
 /**/    public void operacion18(){
         System.out.println ("<< Ejecutar operaciones pendientes >>");
+        Scanner sc = new Scanner(System.in);
+        String palabra = sc.nextLine();
+        agente.intentaOperacion(palabra);
         // ! FALTA POR IMPLEMENTAR !
     }
 

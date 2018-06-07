@@ -14,7 +14,14 @@ public class MensajeRespuestaCompra extends MensajeCompra{
     public MensajeRespuestaCompra(String nC, String nE, double cantidad) {
         super(nC, nE, cantidad);
     }
-    
+
+
+    @Override
+    public void imprimir(){
+        
+    //    System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
+    }
+
     
     
 }

@@ -25,30 +25,15 @@ public class AgenteDeInversiones extends Persona {
     }
     
     public void aniadirMensaje(Mensaje m){
-
        listaPeticiones.add(m);
     }
-    
-    //public String codificacionPeticion(Mensaje p){}
 
     public ArrayList<Mensaje> getListaPeticiones() {
         return listaPeticiones;
     }
 
-    
-    
-    
-
-    
-    
-    
-    /*public void opSolicitaActualizacionAcciones(){ //16.solicitar actualizacion de acciones
-    
-    
-    }
-*/
   
-     public void intentaOperacion(String m){ //16.solicitar actualizacion de acciones
+     public void intentaOperacion(String m){ //18. ejecutar operacion
          String barra= "|";
          char c = barra.charAt(0);
          char s;
