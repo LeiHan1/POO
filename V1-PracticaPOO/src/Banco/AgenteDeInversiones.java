@@ -40,6 +40,9 @@ public class AgenteDeInversiones extends Persona {
                 int ini = 0;
                 int count = 0;
                 int id = 0;
+                int accionesCompradas = 0;
+                int restante = 0;
+                double accion=0;
                 String cliente = null;
                 String empresa = null;
                 for (int n = 0; n < m.length (); n++) { 
@@ -76,18 +79,60 @@ public class AgenteDeInversiones extends Persona {
                     case "Compra": 
                         double cantidad = Double.parseDouble(numAux);
                         
+                        
+                       
 /* hay que añadir una condicion de que si cantidad > precio de la accion se crea el mensaje
     boolean b = (cantidad > accion)? true : false;                    
     Mensaje resCompra = new MensajeRespuestaCompra(cliente, empresa, cantidad, b);
-    
-*/
-                        Mensaje resCompra = new MensajeRespuestaCompra(cliente, empresa, cantidad, true, 3555);
-                        resCompra.setId(id);
-                        //System.out.println ("El precio es " + cantidad);
-                        System.out.println ("Id: " + resCompra.getId());
-                        System.out.println ("Cliente: " + resCompra.getNombreCliente());
-                        System.out.println ("Empresa: " + resCompra.getNombreEmpresa());
-                        System.out.println (resCompra.toString());
+  */  
+                        for(ClientePremium i:Banco.getInversores()){
+                            
+                           
+                            if (i.getNombre() == null ? cliente == null : i.getNombre().equals(cliente)) {
+                                
+                               
+                                for(Empresa em:BolsaDeValores.getListaEmpresas()){
+                                    
+                                    if (em.getNombre().equals(empresa)) {
+                                        
+  
+                                        if (cantidad>em.getValorActual()){
+                                            
+                                            
+                                            accion = em.getValorActual();
+                                            accionesCompradas = (int) (cantidad / em.getValorActual());
+                                            
+                                            
+                                            restante= (int) ((int) (cantidad-(em.getValorActual()*accionesCompradas))); 
+                                            
+                                          Mensaje resCompra = new MensajeRespuestaCompra(id, cliente, empresa, cantidad, true, accionesCompradas, accion, restante );
+                                         
+                                          //Mensaje resCompra= new MensajeRespuestaCompra(cliente, empresa, cantidad, true, accionesCompradas, 3555, restante );
+                                          
+                                          
+                                        }
+                                        else {
+                                        System.out.println(i.getNombre() + " no tiene dinero suficiente");
+                                        }
+                                        
+                                    }
+                                    
+                                        
+                                } 
+                            } 
+                               else {
+                                       
+                                        
+                               
+                            }  
+                        
+                            
+                       
+                
+            }
+
+                        
+                        
                         
                         
                         break;
@@ -96,6 +141,10 @@ public class AgenteDeInversiones extends Persona {
                 
                 
                 }
+                
+               
+            
+               
         
         /*
         int num = 0;
@@ -161,7 +210,7 @@ public class AgenteDeInversiones extends Persona {
           
         */     
     
-     } // END INTENTA OPERACION
+                   }// END INTENTA OPERACION
     
      
 

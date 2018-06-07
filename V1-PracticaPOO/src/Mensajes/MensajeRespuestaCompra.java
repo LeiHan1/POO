@@ -15,12 +15,10 @@ public class MensajeRespuestaCompra extends MensajeCompra{
     double dineroSobrado;
     double precioAccion;
     
-    public MensajeRespuestaCompra(String nC, String nE, double cantidad, boolean b, double accion) {
+    public MensajeRespuestaCompra(int id, String nC, String nE, double cantidad, boolean b, int accionesCompradas, double accion, double restante) {
         super(nC, nE, cantidad);
         sePuedeComprar = b;
-        precioAccion = accion;
-        nTituloComprado = (int)(precioAccion/this.cantidadInvertir);
-        dineroSobrado = (precioAccion%this.cantidadInvertir);
+        System.out.println(id+"|"+nC+"|"+nE+"|"+cantidad+"|"+b+"|"+accionesCompradas+"|"+accion+"|"+restante);
   
     }
     /*

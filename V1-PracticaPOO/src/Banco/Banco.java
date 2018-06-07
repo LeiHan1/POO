@@ -96,7 +96,7 @@ public class Banco implements Serializable{
             System.out.println("No hay ningún cliente.");
         } else {
             int j = 1;
-            for(ClientePremium i:this.clientes){
+            for(ClientePremium i:Banco.clientes){
                 System.out.println(j++ +". " +i/* + ". Nombre: "+i.getNombre()+ "     DNI: "+ i.getDni()+"    Saldo: "+i.getSaldo()*/);
                 System.out.println("   Es cliente premium : " + i.isPremium());
                 if (i.isPremium() == true) {
