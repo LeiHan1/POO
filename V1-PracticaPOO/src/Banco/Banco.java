@@ -189,6 +189,7 @@ public class Banco implements Serializable{
             
                 int titulos = es.pedirTitulosVender();
                     for (ClientePremium s:Banco.getInversores()){
+                        while (s.getNombre().equals(nombreC)){
                     int Titulosquetiene = 0; //llamar a los titulos que tiene cada cliente
                         if (titulos>Titulosquetiene){
                         Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
@@ -200,7 +201,8 @@ public class Banco implements Serializable{
                             System.out.println ("Tiene menos dinero del que desea invertir");
                             return 0;
                         }
-                    }  
+                        
+                    }  }
             }
             
         }
