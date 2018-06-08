@@ -17,7 +17,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -56,8 +55,7 @@ public class Simulador implements Serializable{
         bolsa.aniadirEmpresa(e2);
         bolsa.opActualizacionDeValores();
         
-        MensajeCompra comprar = new MensajeCompra("Lei", "EmpresaA", 1000);
-        banco.getAgente().addMapMensaje(comprar, "Compra");
+        
         
     }
 

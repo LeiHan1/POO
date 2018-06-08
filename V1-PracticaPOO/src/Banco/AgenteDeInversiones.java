@@ -4,16 +4,10 @@
  * and open the template in the editor.
  */
 package Banco;
-import General.*;
 import Mensajes.*;
 import Bolsa.BolsaDeValores;
 import Bolsa.Empresa;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Scanner;
-import java.util.HashSet;
-import java.util.Iterator;
 
 /**
  *
@@ -42,7 +36,7 @@ public class AgenteDeInversiones extends Persona {
                 int id = 0;
                 int accionesCompradas = 0;
                 int restante = 0;
-                double accion=0;
+                double valorAccion=0;
                 String cliente = null;
                 String empresa = null;
                 for (int n = 0; n < m.length (); n++) { 
@@ -99,37 +93,26 @@ public class AgenteDeInversiones extends Persona {
                                         if (cantidad>em.getValorActual()){
                                             
                                             
-                                            accion = em.getValorActual();
+                                            valorAccion = em.getValorActual();
                                             accionesCompradas = (int) (cantidad / em.getValorActual());
                                             
                                             
                                             restante= (int) ((int) (cantidad-(em.getValorActual()*accionesCompradas))); 
                                             
-                                          Mensaje resCompra = new MensajeRespuestaCompra(id, cliente, empresa, cantidad, true, accionesCompradas, accion, restante );
+                                          Mensaje resCompra = new MensajeRespuestaCompra(id, cliente, empresa, cantidad, true, accionesCompradas, valorAccion, restante );
                                          
                                           //Mensaje resCompra= new MensajeRespuestaCompra(cliente, empresa, cantidad, true, accionesCompradas, 3555, restante );
-                                          
-                                          
                                         }
                                         else {
-                                        System.out.println(i.getNombre() + " no tiene dinero suficiente");
-                                        }
-                                        
+                                            System.out.println(i.getNombre() + " no tiene dinero suficiente para comprar 1 accion");
+                                        }    
                                     }
                                     
-                                        
-                                } 
-                            } 
-                               else {
-                                       
-                                        
-                               
+                                }
                             }  
-                        
                             
-                       
-                
-            }
+                               
+                        }
 
                         
                         
@@ -159,7 +142,7 @@ public class AgenteDeInversiones extends Persona {
                      while (m.charAt(n) < m.length()){
                      c = m.charAt(n);
                      numTitulos = numTitulos + c;
-                     num = Integer.parseInt(numTitulos);
+                     num = Integers.parseInt(numTitulos);
                      }
             } // end else
         } // end for
