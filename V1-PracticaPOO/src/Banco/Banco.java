@@ -186,23 +186,22 @@ public class Banco implements Serializable{
         String nombreE = es.pedirNomEmpresa();
         for (Empresa em: Bolsa.BolsaDeValores.getListaEmpresas()){
             while (em.getNombre().equals(nombreE)){
-            
                 int titulos = es.pedirTitulosVender();
-                    for (ClientePremium s:Banco.getInversores()){
-                        while (s.getNombre().equals(nombreC)){
-                    int Titulosquetiene = 0; //llamar a los titulos que tiene cada cliente
+                for (ClientePremium s:Banco.getInversores()){
+                    while (s.getNombre().equals(nombreC)){
+                        int Titulosquetiene = 0; //llamar a los titulos que tiene cada cliente
                         if (titulos>Titulosquetiene){
-                        Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
-                        agente.addMapMensaje(p, "Venta");
-                        p.imprimir();
-                        return 0;
+                            Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
+                            agente.addMapMensaje(p, "Venta");
+                            p.imprimir();
+                            return 0;
                         } 
                         else{
                             System.out.println ("Tiene menos dinero del que desea invertir");
                             return 0;
                         }
-                        
-                    }  }
+                    }
+                }  
             }
             
         }

@@ -75,10 +75,6 @@ public class AgenteDeInversiones extends Persona {
                         
                         
                        
-/* hay que añadir una condicion de que si cantidad > precio de la accion se crea el mensaje
-    boolean b = (cantidad > accion)? true : false;                    
-    Mensaje resCompra = new MensajeRespuestaCompra(cliente, empresa, cantidad, b);
-  */  
                         for(ClientePremium i:Banco.getInversores()){
                             
                            
