@@ -169,7 +169,7 @@ public class AgenteDeInversiones extends Persona {
 
     public void opImprimirOperaciones() { //17.imprimir operaciones pendientes
         System.out.println("Imprimir peticiones pendientes:");
-        mensajes.forEach((k, v) -> System.out.println("Key: " + k.toString() + ";    Value: " + v));
+        mensajes.forEach((k, v) -> System.out.println(v+" "+ k.toString() ));
     }
 
     public void vaciarLista() { //17.imprimir operaciones pendientes
