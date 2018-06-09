@@ -21,7 +21,7 @@ public class MensajeVenta extends Mensaje{
         this.numTitulos = titulos;
     }
 
-    public double getNumTitulos() {
+    public int getNumTitulos() {
         return numTitulos;
     }
 

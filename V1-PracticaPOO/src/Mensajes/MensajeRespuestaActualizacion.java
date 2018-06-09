@@ -11,11 +11,23 @@ package Mensajes;
  */
 public class MensajeRespuestaActualizacion extends MensajeActualizacion{
     
+    public MensajeRespuestaActualizacion(int id, String nBanco, String f) {
+        super(nBanco, f);
+        this.id = id;
+    }
     
+    
+    
+    
+
     @Override
     public void imprimir(){
-        
- //       System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
+        System.out.println(id + "|" + this.getNombreBanco() + "|" + this.getFecha() + "|Actualizada.");
+    }
+    
+    @Override
+    public String toString(){
+        return (id + "|" + this.getNombreBanco() + "|" + this.getFecha() + "|Actualizada.");
     }
 
 }

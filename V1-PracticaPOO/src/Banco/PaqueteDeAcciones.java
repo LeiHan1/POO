@@ -9,17 +9,17 @@ package Banco;
  *
  * @author sergio
  */
-class PaqueteDeAcciones {
+public class PaqueteDeAcciones {
     
     private String nombreEmpresa;
     private int numTitulos;
     private double valorActual;
     private double valorPaquete;
-    
+    /*
     public PaqueteDeAcciones (){
         
     }
-    
+    */
     public PaqueteDeAcciones (String n, int num, double actual){
         
         this.nombreEmpresa = n;

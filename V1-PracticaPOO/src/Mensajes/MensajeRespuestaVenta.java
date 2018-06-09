@@ -10,9 +10,12 @@ package Mensajes;
  * @author Adrian
  */
 public class MensajeRespuestaVenta extends MensajeVenta{
-    
-    public MensajeRespuestaVenta(String nC, String nE, int titulos) {
+    double valorPorAccion, valorTotal;
+    public MensajeRespuestaVenta(int id, String nC, String nE, int titulos, double valorAccion, double valorTot) {
         super(nC, nE, titulos);
+        this.id = id;
+        valorPorAccion = valorAccion;
+        valorTotal = valorTot;
     }
     
     @Override
@@ -21,9 +24,9 @@ public class MensajeRespuestaVenta extends MensajeVenta{
 //        System.out.println( id+" |"+nombreCliente + "|"+nombreEmpresa + "|" +numTitulos);
     }
 
-     @Override
+    @Override
     public String toString(){
-    //    return (id+"|"+nombreCliente + "|"+nombreEmpresa+ "|" +cantidadInvertir);
-    return null;
+        return (id+"|"+nombreCliente + "|"+nombreEmpresa+ "|" + this.getNumTitulos() +"|"+ true + "|"+valorPorAccion+"|"+valorTotal);
+    
     }
 }

@@ -10,15 +10,19 @@ package Mensajes;
  * @author Adrian
  */
 public class MensajeRespuestaCompra extends MensajeCompra{
-    boolean sePuedeComprar;
-    int nTituloComprado;
-    double dineroSobrado;
-    double precioAccion;
+    private boolean sePuedeComprar;
+    private int nTituloComprado;
+    private double dineroSobrado;
+    private double precioAccion;
     
-    public MensajeRespuestaCompra(int id, String nC, String nE, double cantidad, boolean b, int accionesCompradas, double accion, double restante) {
+    public MensajeRespuestaCompra(int id, String nC, String nE, double cantidad, boolean b/*, int accionesCompradas*/, double accion/*, double restante*/) {
         super(nC, nE, cantidad);
         sePuedeComprar = b;
-        System.out.println(id+"|"+nC+"|"+nE+"|"+cantidad+"|"+b+"|"+accionesCompradas+"|"+accion+"|"+restante);
+        precioAccion = accion;
+        nTituloComprado = (int) (cantidad / accion);
+        dineroSobrado =  (cantidad - (precioAccion * nTituloComprado));;
+        
+        //System.out.println(id+"|"+nC+"|"+nE+"|"+cantidad+"|"+b+"|"+accionesCompradas+"|"+accion+"|"+restante);
   
     }
     /*
@@ -61,6 +65,38 @@ public class MensajeRespuestaCompra extends MensajeCompra{
 
     public double getCantidadInvertir() {
         return cantidadInvertir;
+    }
+
+    public boolean isSePuedeComprar() {
+        return sePuedeComprar;
+    }
+
+    public void setSePuedeComprar(boolean sePuedeComprar) {
+        this.sePuedeComprar = sePuedeComprar;
+    }
+
+    public int getnTituloComprado() {
+        return nTituloComprado;
+    }
+
+    public void setnTituloComprado(int nTituloComprado) {
+        this.nTituloComprado = nTituloComprado;
+    }
+
+    public double getDineroSobrado() {
+        return dineroSobrado;
+    }
+
+    public void setDineroSobrado(double dineroSobrado) {
+        this.dineroSobrado = dineroSobrado;
+    }
+
+    public double getPrecioAccion() {
+        return precioAccion;
+    }
+
+    public void setPrecioAccion(double precioAccion) {
+        this.precioAccion = precioAccion;
     }
 
    
