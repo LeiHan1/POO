@@ -171,7 +171,7 @@ public class Simulador implements Serializable {
             } else {
                 int jEmpresa = bolsa.buscarEmpresaRecomendada();
                 Empresa e = bolsa.getListaEmpresas().get(jEmpresa);
-                System.out.print("Su gestor " + banco.getInversores().get(jEmpresa).getNomGestor());
+                System.out.print("Su gestor " + banco.getInversores().get(iC).getNomGestor());
                 System.out.println(" le recomienda invertir en la empresa: " + e.getNombre() + " con valor actual: " + e.getValorActual() + " y variacion: " + e.getVariacion());
 
             }
