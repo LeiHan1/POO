@@ -94,25 +94,22 @@ public class Banco implements Serializable {
 
     }
 
-    public void opSolicitaCompraAcciones(String nombreCliente, String nombreEmpresa, double cantidad) { //14.solicitar compra de acciones
+//14.solicitar compra de acciones
+    public void opSolicitaCompraAcciones(String nombreCliente, String nombreEmpresa, double cantidad) { 
         Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
-        agente.addMapMensaje(p, "Compra");
-        p.imprimir();
-        
+        agente.addMapMensaje(p, "Compra");        
     }
-
-    public void opSolicitaVentaAcciones(String nombreC, String nombreE, int titulos) { //15.solicitar venta de acciones
+    
+//15.solicitar venta de acciones
+    public void opSolicitaVentaAcciones(String nombreC, String nombreE, int titulos) { 
         Mensaje p = new MensajeVenta(nombreC, nombreE, titulos);
         agente.addMapMensaje(p, "Venta");
-        p.imprimir();
-
     }
-
+    
+//16.solicitar actualizacion de acciones
     public void opSolicitaActualizacion(String nombreBanco, String fecha){
         Mensaje p = new MensajeActualizacion(nombreBanco, fecha);
-        agente.addMapMensaje(p, "Actualizacion");
-        p.imprimir();
-    
+        agente.addMapMensaje(p, "Actualizacion");   
     }
     
     public AgenteDeInversiones getAgente() {
