@@ -147,19 +147,16 @@ public class BolsaDeValores implements Serializable {
     }
 
     public String intentaOperacion(String m, String v) { //18. ejecutar operacion
-        String mensajeRespuesta = null;
-        String barra = "|";
-        char bar = barra.charAt(0); //transformar la barra de string a char
-       
-        int ini = 0;
-        int count = 0;
         int id = 0;
-
+        String mensajeRespuesta = null;
         String cliente = null;
         String empresa = null;
+        String barra = "|";
+        char bar = barra.charAt(0); //transformar la barra de string a char
+        int ini = 0;
+        int count = 0;
         int n = 0;
-        //for (int n = 0; n < m.length(); n++) {
-        while (n < m.length()) {
+        while (n < m.length()) { // sacando los campos del mensaje
             if (m.charAt(n) == bar) {
                 count++;
                 switch (count) {
@@ -167,28 +164,20 @@ public class BolsaDeValores implements Serializable {
                         String idAux = m.substring(ini, n);
                         ini = n;
                         id = Integer.parseInt(idAux);
-                        //System.out.println("El id es " + id);
                         break;
-
                     case 2: // campo del cliente
                         cliente = m.substring(ini + 1, n);
                         ini = n;
-                        //System.out.println("El Cliente es " +cliente);
                         break;
-
-                    case 3: // campo de la empresa
+                    default: // campo de la empresa
                         empresa = m.substring(ini + 1, n);
                         ini = n;
-                        //System.out.println("La Empresa es " +empresa);
-                        break;
-
-                    default:
                         break;
                 } // end switch
             } // end if
             n++;
         } // end while  
-        String stringAux = m.substring(ini + 1, m.length());
+        String stringAux = m.substring(ini + 1, m.length()); // campo de cantidad/titulo
 
         switch (v) {
             case "Compra":
@@ -202,9 +191,8 @@ public class BolsaDeValores implements Serializable {
                 Cliente cli = Banco.getInversores().get(iC);
 
                 double valorAccion = em.getValorActual();
-                boolean sePuedeComprar = false;
                 if (cli.getSaldo() < valorAccion) {
-                    MensajeRespuestaCompra resCompra = new MensajeRespuestaCompra(id, cliente, empresa, cantidad, sePuedeComprar, valorAccion);
+                    MensajeRespuestaCompra resCompra = new MensajeRespuestaCompra(id, cliente, empresa, cantidad, false, valorAccion);
                 } else {
                     MensajeRespuestaCompra resCompra = new MensajeRespuestaCompra(id, cliente, empresa, cantidad, true, valorAccion);
 
