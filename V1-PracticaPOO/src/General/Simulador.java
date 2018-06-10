@@ -305,10 +305,15 @@ public class Simulador implements Serializable {
 //18. ejecutar operaciones pendientes 
     public void operacion18() {
         System.out.println("<< Ejecutar operaciones pendientes >>");
-        if (banco.getAgente().getActualizacionPendiente().isEmpty()){
+        if (banco.getAgente().getMensajes().isEmpty()){
             System.out.println("No hay actualizaciones pendientes");
         } else {
-            banco.getAgente().vaciarLista();
+            banco.getAgente().getMensajes().forEach((k, v)
+                -> {
+                    String str = bolsa.intentaOperacion(k.toString(), v);
+                    System.out.println(str);
+
+        }); //end for each
         }
         
     }
