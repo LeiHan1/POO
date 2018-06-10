@@ -13,28 +13,29 @@ import java.lang.Object;
  *
  * @author sergio
  */
-public class Cliente extends Persona implements Serializable{
-    
+public class Cliente extends Persona implements Serializable {
+
     private double saldo;
-    private ArrayList <PaqueteDeAcciones> cartera;
+    private ArrayList<PaqueteDeAcciones> cartera;
     private boolean premium;
     //private GestorDeInversiones gestor;
     //private ClientePremium clientePremium;
-    
-    public Cliente (String nombre, String dni, double saldo){
+
+    public Cliente(String nombre, String dni, double saldo) {
         this.nombre = nombre;
         this.dni = dni;
         this.saldo = saldo;
         this.premium = false;
-        cartera = new ArrayList <> ();
+        cartera = new ArrayList<>();
     }
-    
-    public double getSaldo(){
-        
+
+    public double getSaldo() {
+
         return saldo;
     }
-    public void setSaldo(double saldo){
-        
+
+    public void setSaldo(double saldo) {
+
         this.saldo = saldo;
     }
 
@@ -53,52 +54,32 @@ public class Cliente extends Persona implements Serializable{
     public void setPremium(boolean premium) {
         this.premium = premium;
     }
-    
-    
-    public void aniadirPaquete (PaqueteDeAcciones p){        
+
+    public void aniadirPaquete(PaqueteDeAcciones p) {
         cartera.add(p);
     }
-    
-    public void eliminarPaquete(PaqueteDeAcciones p){    
+
+    public void eliminarPaquete(PaqueteDeAcciones p) {
         cartera.remove(p);
     }
-    
-    public boolean existePaquete(PaqueteDeAcciones p){    
+
+    public boolean existePaquete(PaqueteDeAcciones p) {
         return cartera.contains(p);
     }
-    
-    public double valorPaquetes(){
-        
+
+    public double valorPaquetes() {
+
         double total = 0;
-        for(PaqueteDeAcciones p:cartera){
-            
+        for (PaqueteDeAcciones p : cartera) {
+
             total = total + p.getValorPaquete();
         }
         return total;
     }
-    
 
-    /*public void modificarPaquete (Paquetes p){
-        
-        boolean encontrado = false;
-        int i = 0;
-        while (!encontrado){
-            if (cartera.get(i) == p){
-                encontrado = true;
-            } else{
-                
-                i++;
-            }
-            
-        }
-    } */
-    
-public String toString(){
-    
-    String mensaje = "Nombre: "+nombre+". Nº de DNI: "+ dni+". Saldo Disponible: "+saldo+". Valor Paquetes:"+valorPaquetes();
-    return mensaje;
-}
-}
-    
-    
+    public String toString() {
 
+        String mensaje = "Nombre: " + nombre + ". Nº de DNI: " + dni + ". Saldo Disponible: " + saldo + ". Valor Paquetes:" + valorPaquetes();
+        return mensaje;
+    }
+}

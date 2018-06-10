@@ -12,12 +12,12 @@ import java.io.IOException;
  * @author sergio
  */
 public class Main {
-   static InterfazDeUsuario menu = new InterfazDeUsuario();
+   
    static Simulador simulador = new Simulador();
    
     public static void main(String[] args) throws IOException, ClassNotFoundException {
        
-        menu.menu();
+        
         simulador.operacionesSimulador();
 
     }

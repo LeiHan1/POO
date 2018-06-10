@@ -24,7 +24,7 @@ import java.util.Date;
  * @author Adrian
  */
 public class Simulador implements Serializable {
-
+    static InterfazDeUsuario menu = new InterfazDeUsuario();
     public Banco banco;
     public ArrayList<ClientePremium> listaClientes;
     public BolsaDeValores bolsa;
@@ -320,6 +320,7 @@ public class Simulador implements Serializable {
 
     public void operacionesSimulador() throws IOException, ClassNotFoundException {
         do {
+            menu.menu();
             num = interfaz.leerOpcion();
 
             switch (num) {

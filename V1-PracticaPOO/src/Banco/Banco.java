@@ -5,8 +5,6 @@
  */
 package Banco;
 
-import Bolsa.BolsaDeValores.*;
-import Bolsa.Empresa;
 import General.Escaner;
 import Mensajes.*;
 import java.util.ArrayList;

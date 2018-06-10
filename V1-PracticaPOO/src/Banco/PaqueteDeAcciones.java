@@ -15,11 +15,7 @@ public class PaqueteDeAcciones {
     private int numTitulos;
     private double valorActual;
     private double valorPaquete;
-    /*
-    public PaqueteDeAcciones (){
-        
-    }
-    */
+    
     public PaqueteDeAcciones (String n, int num, double actual){
         
         this.nombreEmpresa = n;

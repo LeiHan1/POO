@@ -35,7 +35,7 @@ public class BolsaDeValores implements Serializable {
 
         this.nombreBolsa = nombre;
         listaEmpresas = new ArrayList<>();
-        //listaBancos = new ArrayList<>();
+       
     }
 
     public String getNombreBolsa() {
