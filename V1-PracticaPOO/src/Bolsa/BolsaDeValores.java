@@ -20,14 +20,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-/**
- *
- * @author sergio
- */
 public class BolsaDeValores implements Serializable {
 
     private String nombreBolsa;
-    private static ArrayList<Empresa> listaEmpresas;
+    public static ArrayList<Empresa> listaEmpresas;
     //private ArrayList<Banco> listaBancos;
     private HashMap<Empresa, String> actualizacionPendiente = new HashMap<>();
 
@@ -61,7 +57,7 @@ public class BolsaDeValores implements Serializable {
     }
 
     public void setListaEmpresas(ArrayList<Empresa> listaEmpresas) {
-        this.listaEmpresas = listaEmpresas;
+        BolsaDeValores.listaEmpresas = listaEmpresas;
     }
 
     public void mostrarEmpresas(ArrayList<Empresa> empresa) {
@@ -94,9 +90,9 @@ public class BolsaDeValores implements Serializable {
     
     public int buscarEmpresaRecomendada() {
         int indice = 0;
-        ArrayList<Empresa> lista = this.getListaEmpresas();
+        ArrayList<Empresa> lista = BolsaDeValores.getListaEmpresas();
         double variacionMax = lista.get(0).getVariacion();
-        for (int i = 0; i < this.getListaEmpresas().size(); i++) {
+        for (int i = 0; i < BolsaDeValores.getListaEmpresas().size(); i++) {
             if (variacionMax <= lista.get(i).getVariacion()) {
                 variacionMax = lista.get(i).getVariacion();
                 indice = i;
@@ -121,17 +117,15 @@ public class BolsaDeValores implements Serializable {
     public void opRealizarCopia() throws IOException { //12.realizar copia de seguridad
         System.out.println("Realizar copia de seguridad (bolsa)");
         File archivo;
-
         ObjectOutputStream oss;
-
         archivo = new File("Copia de Seguridad de Bolsa");
         try {
-
             oss = new ObjectOutputStream(new FileOutputStream(archivo));
             oss.writeObject(listaEmpresas);
             oss.close();
         } catch (IOException ex) {
         }
+        
         int datos = listaEmpresas.size();
         System.out.println("Se ha creado una Copia de Seguridad en la carpeta del proyecto con " + datos + " Empresas");
     }
@@ -140,7 +134,9 @@ public class BolsaDeValores implements Serializable {
         ObjectInputStream ois;
         try {
             ois = new ObjectInputStream(new FileInputStream("Copia de Seguridad de Bolsa"));
+            
             listaEmpresas = (ArrayList<Empresa>) ois.readObject();
+            
         } catch (ClassNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         }

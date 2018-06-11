@@ -7,18 +7,16 @@ package General;
 
 import java.io.IOException;
 
-/**
- *
- * @author sergio
- */
 public class Main {
    
    static Simulador simulador = new Simulador();
+   static InterfazDeUsuario menu = new InterfazDeUsuario();
    
     public static void main(String[] args) throws IOException, ClassNotFoundException {
        
-        
+        menu.menu();
         simulador.operacionesSimulador();
+                
 
     }
 }

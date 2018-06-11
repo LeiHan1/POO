@@ -19,20 +19,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- *
- * @author Adrian
- */
+
 public class Simulador implements Serializable {
-    static InterfazDeUsuario menu = new InterfazDeUsuario();
+    
     public Banco banco;
-    public ArrayList<ClientePremium> listaClientes;
+    
     public BolsaDeValores bolsa;
     public int num;
 
     InterfazDeUsuario interfaz = new InterfazDeUsuario();
 
-// --- constructor --- //   
+  
     public Simulador() {
 
         AgenteDeInversiones agente = new AgenteDeInversiones("Ana", "456");
@@ -60,18 +57,21 @@ public class Simulador implements Serializable {
     public void opecacion0() {
         System.out.println("Se ha salido del programa.");
         System.exit(0);
+       
+               
     }
 //1. mostrar clientes    
 
     public void operacion1() {
         System.out.println("<< Estado de los clientes >>");
-        banco.mostrarClientes(banco.getInversores());
+        
+        banco.mostrarClientes(Banco.getInversores());
     }
 //2. mostrar bolsas
 
     public void operacion2() {
         System.out.println("<< Estado de la bolsa >>");
-        bolsa.mostrarEmpresas(bolsa.getListaEmpresas());
+        bolsa.mostrarEmpresas(BolsaDeValores.getListaEmpresas());
     }
 //3. añadir cliente    
 
@@ -80,7 +80,7 @@ public class Simulador implements Serializable {
         System.out.println("<< Añadir cliente >>");
         String nombre = datos.pedirNombre();
         Utilidades util = new Utilidades();
-        if ((util.existeCliente(nombre, banco.getInversores()) == true)) {
+        if ((util.existeCliente(nombre, Banco.getInversores()) == true)) {
             System.out.println("El cliente ya existe.");
         } else {
             String dni = datos.pedirDni();
@@ -97,10 +97,10 @@ public class Simulador implements Serializable {
         Escaner eliminar = new Escaner();
         String nom = eliminar.pedirNombre();
         Utilidades util = new Utilidades();
-        if (this.banco.getInversores().isEmpty() || (util.existeCliente(nom, banco.getInversores()) == false)) {
+        if (Banco.getInversores().isEmpty() || (util.existeCliente(nom, Banco.getInversores()) == false)) {
             System.out.println("No existe el cliente o la lista de clientes está vacía.");
         } else {
-            int i = util.buscarCliente(nom, banco.getInversores());
+            int i = util.buscarCliente(nom, Banco.getInversores());
             banco.eliminarInversor(i);
             System.out.println("El cliente " + nom + " ha sido eliminado");
         }
@@ -113,25 +113,27 @@ public class Simulador implements Serializable {
         ObjectOutputStream oss;
         archivo = new File("Copia de Seguridad de Clientes");
         try {
-            listaClientes = banco.getInversores();
-            System.out.println(listaClientes);
+            
             oss = new ObjectOutputStream(new FileOutputStream(archivo));
-            oss.writeObject(listaClientes);
+            oss.writeObject(Banco.clientes);
             oss.close();
 
         } catch (IOException ex) {
         }
-        int datos = banco.getInversores().size();
+        
+        int datos = Banco.clientes.size();
         System.out.println("Se ha creado una Copia de Seguridad en la carpeta del proyecto con " + datos + " Clientes");
     }
 
 //6. restaurar copia de seguridad del banco    
     public void operacion6() throws FileNotFoundException, IOException {
+        
         ObjectInputStream ois;
         try {
             ois = new ObjectInputStream(new FileInputStream("Copia de Seguridad de Clientes"));
-            Object aux = ois.readObject();
-            System.out.println(aux);
+            Banco.clientes = (ArrayList<ClientePremium>) ois.readObject();
+            
+            
         } catch (ClassNotFoundException e) {
             System.out.println("No se encuentra el archivo");
         }
@@ -143,12 +145,12 @@ public class Simulador implements Serializable {
         Escaner c = new Escaner();
         String n = c.pedirNombre();
         Utilidades util = new Utilidades();
-        if (this.banco.getInversores().isEmpty() || (util.existeCliente(n, banco.getInversores()) == false)) {
+        if (Banco.getInversores().isEmpty() || (util.existeCliente(n, Banco.getInversores()) == false)) {
             System.out.println("No existe el cliente o la lista de clientes está vacía.");
         } else {
-            int i = util.buscarCliente(n, banco.getInversores());
+            int i = util.buscarCliente(n, Banco.getInversores());
 
-            banco.hacerClientePremium(banco.getInversores().get(i));
+            banco.hacerClientePremium(Banco.getInversores().get(i));
 
         }
     }
@@ -161,17 +163,17 @@ public class Simulador implements Serializable {
         System.out.println("Introduce su nombre: ");
         String nomCliente = es.pedirNombre();
 
-        if (banco.getInversores().isEmpty() || (util.existeCliente(nomCliente, banco.getInversores()) == false)) {
+        if (Banco.getInversores().isEmpty() || (util.existeCliente(nomCliente, Banco.getInversores()) == false)) {
             System.out.println("No existe el cliente o la lista de clientes está vacía.");
         } else {
-            int iC = util.buscarCliente(nomCliente, banco.getInversores());
-            Cliente c = banco.getInversores().get(iC);
+            int iC = util.buscarCliente(nomCliente, Banco.getInversores());
+            Cliente c = Banco.getInversores().get(iC);
             if (c.isPremium() == false) {
                 System.out.println("Usted no es cliente premium, no puede solicitar recomendacion.");
             } else {
                 int jEmpresa = bolsa.buscarEmpresaRecomendada();
-                Empresa e = bolsa.getListaEmpresas().get(jEmpresa);
-                System.out.print("Su gestor " + banco.getInversores().get(iC).getNomGestor());
+                Empresa e = BolsaDeValores.getListaEmpresas().get(jEmpresa);
+                System.out.print("Su gestor " + Banco.getInversores().get(iC).getNomGestor());
                 System.out.println(" le recomienda invertir en la empresa: " + e.getNombre() + " con valor actual: " + e.getValorActual() + " y variacion: " + e.getVariacion());
 
             }
@@ -184,7 +186,7 @@ public class Simulador implements Serializable {
         Escaner es = new Escaner();
         String nombreEmpresa = es.pedirNomEmpresa();
         Utilidades util = new Utilidades();
-        if ((util.existeCliente(nombreEmpresa, banco.getInversores()) == true)) {
+        if ((util.existeCliente(nombreEmpresa, Banco.getInversores()) == true)) {
             System.out.println("La empresa ya existe.");
         } else {
             double actual = es.pedirValorActual();
@@ -200,10 +202,10 @@ public class Simulador implements Serializable {
         Utilidades util = new Utilidades();
         Escaner es = new Escaner();
         String nombreE = es.pedirNomEmpresa();
-        if (bolsa.getListaEmpresas().isEmpty() || (util.existeEmpresa(nombreE, bolsa.getListaEmpresas()) == false)) {
+        if (BolsaDeValores.getListaEmpresas().isEmpty() || (util.existeEmpresa(nombreE, BolsaDeValores.getListaEmpresas()) == false)) {
             System.out.println("No existe la empresa o la lista de empresas está vacía.");
         } else {
-            int i = util.buscarEmpresa(nombreE, bolsa.getListaEmpresas());
+            int i = util.buscarEmpresa(nombreE, BolsaDeValores.getListaEmpresas());
             this.bolsa.borrarEmpresa(i);
             System.out.println("Empresa eliminada.");
 
@@ -234,8 +236,8 @@ public class Simulador implements Serializable {
         Escaner es = new Escaner();
         Utilidades util = new Utilidades();
         String nombreC = es.pedirNombre();
-        ArrayList<ClientePremium> clientes = this.banco.getInversores();
-        ArrayList<Empresa> empresas = bolsa.getListaEmpresas();
+        ArrayList<ClientePremium> clientes = Banco.getInversores();
+        ArrayList<Empresa> empresas = BolsaDeValores.getListaEmpresas();
         if (clientes.isEmpty() || (util.existeCliente(nombreC, clientes) == false)) {
             System.out.println("No existe el cliente o la lista de clientes está vacía.");
         } else {
@@ -261,8 +263,8 @@ public class Simulador implements Serializable {
         Escaner es = new Escaner();
         Utilidades util = new Utilidades();
         String nombreC = es.pedirNombre(); // pedir y comprobar nombre cliente
-        ArrayList<ClientePremium> clientes = this.banco.getInversores();
-        ArrayList<Empresa> empresas = bolsa.getListaEmpresas();
+        ArrayList<ClientePremium> clientes = Banco.getInversores();
+        ArrayList<Empresa> empresas = BolsaDeValores.getListaEmpresas();
         if (clientes.isEmpty() || (util.existeCliente(nombreC, clientes) == false)) {
             System.out.println("No existe el cliente o la lista de clientes está vacía.");
         } else {
@@ -320,7 +322,7 @@ public class Simulador implements Serializable {
 
     public void operacionesSimulador() throws IOException, ClassNotFoundException {
         do {
-            menu.menu();
+            
             num = interfaz.leerOpcion();
 
             switch (num) {

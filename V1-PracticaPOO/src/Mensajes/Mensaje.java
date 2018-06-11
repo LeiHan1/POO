@@ -5,8 +5,6 @@
  */
 package Mensajes;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author sergio

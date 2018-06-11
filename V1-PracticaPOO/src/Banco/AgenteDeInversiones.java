@@ -7,11 +7,6 @@ package Banco;
 
 import Mensajes.*;
 import java.util.HashMap;
-
-/**
- *
- * @author sergio
- */
 public class AgenteDeInversiones extends Persona {
 
     private HashMap<Mensaje, String> mensajes = new HashMap<>();

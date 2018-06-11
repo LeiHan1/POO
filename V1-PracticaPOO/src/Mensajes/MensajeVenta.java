@@ -5,13 +5,7 @@
  */
 package Mensajes;
 
-import Banco.AgenteDeInversiones;
-import Mensajes.Mensaje;
 
-/**
- *
- * @author Han Lei
- */
 public class MensajeVenta extends Mensaje{
     private int numTitulos;
     

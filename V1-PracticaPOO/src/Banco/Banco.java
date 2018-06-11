@@ -17,8 +17,8 @@ import java.io.Serializable;
 public class Banco implements Serializable {
 
     private String nombreBanco;
-    private static ArrayList<ClientePremium> clientes;
-    private ArrayList<String> Operaciones;
+    public static ArrayList<ClientePremium> clientes;
+    private final ArrayList<String> Operaciones;
     private AgenteDeInversiones agente;
     private GestorDeInversiones gestorInv; // gestor asignado al cliente premium
 
@@ -45,6 +45,7 @@ public class Banco implements Serializable {
     public static ArrayList<ClientePremium> getInversores() {
         return clientes;
     }
+    
 
     public void aniadirInversor(ClientePremium i) {
         clientes.add(i);
@@ -97,7 +98,8 @@ public class Banco implements Serializable {
 //14.solicitar compra de acciones
     public void opSolicitaCompraAcciones(String nombreCliente, String nombreEmpresa, double cantidad) { 
         Mensaje p = new MensajeCompra(nombreCliente, nombreEmpresa, cantidad);
-        agente.addMapMensaje(p, "Compra");        
+        agente.addMapMensaje(p, "Compra"); 
+        
     }
     
 //15.solicitar venta de acciones

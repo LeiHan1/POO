@@ -5,10 +5,6 @@
  */
 package Mensajes;
 
-/**
- *
- * @author Adrian
- */
 public class MensajeActualizacion extends Mensaje {
 
     private String fecha;

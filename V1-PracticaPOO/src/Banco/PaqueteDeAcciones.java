@@ -5,10 +5,6 @@
  */
 package Banco;
 
-/**
- *
- * @author sergio
- */
 public class PaqueteDeAcciones {
     
     private String nombreEmpresa;

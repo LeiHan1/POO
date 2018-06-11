@@ -5,10 +5,7 @@
  */
 package Mensajes;
 
-/**
- *
- * @author Adrian
- */
+
 public class MensajeRespuestaActualizacion extends MensajeActualizacion{
     
     public MensajeRespuestaActualizacion(int id, String nBanco, String f) {

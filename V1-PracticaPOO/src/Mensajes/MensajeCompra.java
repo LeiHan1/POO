@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package Mensajes;
-/**
- *
- * @author Han Lei
- */
+
 public class MensajeCompra extends Mensaje {
     
     double cantidadInvertir;

@@ -7,7 +7,6 @@ package Banco;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.lang.Object;
 
 /**
  *
@@ -77,6 +76,7 @@ public class Cliente extends Persona implements Serializable {
         return total;
     }
 
+    @Override
     public String toString() {
 
         String mensaje = "Nombre: " + nombre + ". Nº de DNI: " + dni + ". Saldo Disponible: " + saldo + ". Valor Paquetes:" + valorPaquetes();

@@ -7,10 +7,6 @@ package Banco;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Han Lei
- */
 public class Persona implements Serializable{
     
     protected String nombre;

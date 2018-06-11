@@ -5,16 +5,13 @@
  */
 package Mensajes;
 
-/**
- *
- * @author Adrian
- */
 public class MensajeRespuestaCompra extends MensajeCompra{
     private boolean sePuedeComprar;
     private int nTituloComprado;
     private double dineroSobrado;
     private double precioAccion;
     
+    @SuppressWarnings("empty-statement")
     public MensajeRespuestaCompra(int id, String nC, String nE, double cantidad, boolean b/*, int accionesCompradas*/, double accion/*, double restante*/) {
         super(nC, nE, cantidad);
         sePuedeComprar = b;
