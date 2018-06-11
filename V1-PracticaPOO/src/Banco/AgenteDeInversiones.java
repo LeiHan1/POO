@@ -26,7 +26,9 @@ public class AgenteDeInversiones extends Persona {
     }
     
     public void opImprimirOperaciones() { //17.imprimir operaciones pendientes
-        System.out.println("Imprimir peticiones pendientes:");
+        if (mensajes.isEmpty()){
+            System.out.println("No hay peticiones pendientes");
+        }
         mensajes.forEach((k, v) -> System.out.println(v+" "+ k.toString() ));
     }
 

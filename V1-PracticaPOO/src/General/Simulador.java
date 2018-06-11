@@ -308,7 +308,7 @@ public class Simulador implements Serializable {
     public void operacion18() {
         System.out.println("<< Ejecutar operaciones pendientes >>");
         if (banco.getAgente().getMensajes().isEmpty()){
-            System.out.println("No hay actualizaciones pendientes");
+            System.out.println("No hay peticiones");
         } else {
             banco.getAgente().getMensajes().forEach((k, v)
                 -> {
@@ -316,6 +316,7 @@ public class Simulador implements Serializable {
                     System.out.println(str);
 
         }); //end for each
+            banco.getAgente().getMensajes().clear();
         }
         
     }
